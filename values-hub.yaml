@@ -72,15 +72,24 @@ clusterGroup:
       timeout: 234
       # verbosity: "-v"
 
+      #  managedClusterGroups:
+      #    exampleRegion:
+      #      name: group-one
+      #      acmlabels:
+      #      - name: clusterGroup
+      #        value: group-one
+      #      helmOverrides:
+      #      - name: clusterGroup.isHubCluster
+      #        value: false
+      
   managedClusterGroups:
-    exampleRegion:
-      name: group-one
-      acmlabels:
-      - name: clusterGroup
-        value: group-one
-      helmOverrides:
-      - name: clusterGroup.isHubCluster
-        value: false
+  - name: group-one
+    helmOverrides:
+    - name: clusterGroup.isHubCluster
+      value: false
+    clusterSelector:
+      matchLabels:
+        clusterGroup: group-one
 
       # Before enabling cluster provisioning, ensure AWS and/or Azure
       #   credentials and OCP pull secrets are defined in Vault.
