@@ -49,7 +49,7 @@ clusterGroup:
       name: config-demo
       namespace: config-demo
       project: config-demo
-      path: charts/all/config-demo
+      path: charts/hub/config-demo
 
     hello-world:
       name: hello-world
