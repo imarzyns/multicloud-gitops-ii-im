@@ -11,6 +11,7 @@ clusterGroup:
   namespaces:
     - config-demo
     - hello-world
+    - hello-world-sgx
     - golang-external-secrets
 
   subscriptions:
@@ -19,6 +20,7 @@ clusterGroup:
     - eso
     - config-demo
     - hello-world
+    - hello-world-sgx
 
   applications:
     golang-external-secrets:
