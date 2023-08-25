@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: hello-world-sgx
+  name: hello-world-sgx
+spec:
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: hello-world-sgx
+    weight: 100
+  wildcardPolicy: None
