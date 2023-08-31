@@ -8,7 +8,7 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
-    - redhat-ods-operator-ii
+    - redhat-ods-operator
 
   subscriptions:
     acm:
@@ -19,7 +19,7 @@ clusterGroup:
     
     rhods:
       name: rhods-operator
-      namespace: redhat-ods-operator-ii
+      namespace: redhat-ods-operator
 
   projects:
     - hub
