@@ -63,7 +63,7 @@ spec:
               - ALL
           seccompProfile:
             type: RuntimeDefault
-          runAsUser: 1000
+          runAsUser: 1000855555
           runAsGroup: 2000
           fsGroup: 3000
         resources:
