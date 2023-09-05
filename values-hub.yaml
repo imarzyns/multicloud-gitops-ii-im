@@ -17,7 +17,7 @@ clusterGroup:
       channel: release-2.7
       #csv: advanced-cluster-management.v2.6.1
     
-    rhods:
+    ods:
       name: rhods-operator
       namespace: redhat-ods-operator
 
