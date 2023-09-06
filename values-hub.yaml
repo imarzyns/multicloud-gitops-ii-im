@@ -19,10 +19,6 @@ clusterGroup:
     ods:
       name: rhods-operator
       namespace: openshift-operators
-    
-    openvino:
-      name: ovms-operator
-      namespace: openshift-operators
 
   projects:
     - hub
