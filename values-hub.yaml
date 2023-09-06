@@ -20,6 +20,14 @@ clusterGroup:
       name: rhods-operator
       namespace: openshift-operators
 
+    aikit:
+      name: aikit-operator
+      namespace: openshift-operators
+    
+    openvino:
+      name: ovms-operator
+      namespace: openshift-operators
+
   projects:
     - hub
     - config-demo
