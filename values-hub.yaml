@@ -8,6 +8,7 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
+    - redhat-ods-operator
 
   subscriptions:
     acm:
@@ -16,9 +17,9 @@ clusterGroup:
       channel: release-2.8
       #csv: advanced-cluster-management.v2.6.1
     
-    openvino:
-      name: ovms-operator
-      namespace: openshift-operators
+    # openvino:
+    #   name: ovms-operator
+    #   namespace: openshift-operators
 
     rhods:
       name: rhods-operator
