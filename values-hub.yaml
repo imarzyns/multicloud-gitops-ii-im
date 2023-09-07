@@ -67,6 +67,12 @@ clusterGroup:
       project: hello-world
       path: charts/all/hello-world
 
+    hello-world-amx:
+      name: hello-world-amx
+      namespace: hello-world-amx
+      project: hello-world-amx
+      path: charts/all/hello-world-amx
+
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule

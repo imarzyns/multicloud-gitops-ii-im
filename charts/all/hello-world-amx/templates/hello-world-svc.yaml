@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hello-world-amx
+  name: hello-world-amx
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: hello-world
+    deploymentconfig: hello-world-amx
+  sessionAffinity: None
+  type: ClusterIP
