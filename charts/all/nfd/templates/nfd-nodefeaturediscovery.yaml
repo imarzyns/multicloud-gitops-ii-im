@@ -1,0 +1,20 @@
+﻿# Copyright (c) 2022 - 2023 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+# source: https://github.com/intel/intel-technology-enabling-for-openshift/blob/main/nfd/node-feature-discovery-openshift.yaml
+
+apiVersion: nfd.openshift.io/v1
+kind: NodeFeatureDiscovery
+metadata:
+  name: nfd-instance
+  namespace: openshift-nfd
+spec:
+  extraLabelNs:
+    - sgx.intel.com
+  resourceLabels:
+    - sgx.intel.com/epc
+  operand:
+    image: quay.io/openshift/origin-node-feature-discovery:4.12
+    imagePullPolicy: Always
+    servicePort: 12000
+  workerConfig:
+    configData: |

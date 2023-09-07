@@ -9,6 +9,7 @@ clusterGroup:
   isHubCluster: false
 
   namespaces:
+    - openshift-nfd
     - config-demo
     - hello-world
     - hello-world-sgx
@@ -17,12 +18,19 @@ clusterGroup:
   subscriptions:
 
   projects:
+    - openshift-nfd
     - eso
     - config-demo
     - hello-world
     - hello-world-sgx
 
   applications:
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      project: openshift-nfd
+      path: charts/all/nfd
+
     golang-external-secrets:
       name: golang-external-secrets
       namespace: golang-external-secrets
