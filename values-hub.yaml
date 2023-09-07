@@ -20,9 +20,9 @@ clusterGroup:
       name: ovms-operator
       namespace: openshift-operators
 
-    ods:
+    rhods:
       name: rhods-operator
-      namespace: openshift-operators
+      namespace: redhat-ods-operator
 
   projects:
     - hub
