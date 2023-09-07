@@ -18,7 +18,13 @@ clusterGroup:
 
     rhods:
       name: rhods-operator
-      namespace: redhat-ods-operator
+      # namespace: redhat-ods-operator
+      namespace: openshift-operators
+      # channel: stable
+    
+    openvino:
+      name: openvino-operator
+      namespace: openshift-operators
 
   projects:
     - hub
