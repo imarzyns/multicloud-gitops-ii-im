@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-world-amx-configmap
+  labels:
+    app.kubernetes.io/instance: hello-world-amx
+data:
+  "index.html": |-
+    <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="utf-8">
+          <title>Hello World AMX</title>
+        </head>
+          <body>
+            <h1>Hello World! Let's use some AMX!</h1>
+            <br/>
+            <h2>
+            Hub Cluster domain is '{{ .Values.global.hubClusterDomain }}' <br>
+            Pod is running on Local Cluster Domain '{{ .Values.global.localClusterDomain }}' <br>
+            </h2>
+          </body>
+      </html>
