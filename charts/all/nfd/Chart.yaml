@@ -1,0 +1,6 @@
+apiVersion: v2
+description: A Helm chart to show SGX capabilities
+keywords:
+- sgx
+name: sgx
+version: 0.0.1
