@@ -8,7 +8,6 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
-    - redhat-ods-operator
 
   subscriptions:
     acm:
