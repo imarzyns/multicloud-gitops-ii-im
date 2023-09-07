@@ -22,9 +22,9 @@ clusterGroup:
       namespace: openshift-operators
       # channel: stable
     
-    openvino:
-      name: openvino-operator
-      namespace: openshift-operators
+    # openvino:
+    #   name: openvino-operator
+    #   namespace: openshift-operators
 
   projects:
     - hub
