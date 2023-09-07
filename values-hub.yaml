@@ -8,6 +8,7 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
+    - hello-world-amx
 
   subscriptions:
     acm:
@@ -30,6 +31,7 @@ clusterGroup:
     - hub
     - config-demo
     - hello-world
+    - hello-world-amx
 
   applications:
     acm:
