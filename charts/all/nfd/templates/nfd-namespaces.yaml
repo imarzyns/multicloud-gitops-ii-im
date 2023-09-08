@@ -1,4 +1,5 @@
 # Intel
+---
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -8,4 +9,3 @@ metadata:
   annotations:
   labels:
 spec:
----
