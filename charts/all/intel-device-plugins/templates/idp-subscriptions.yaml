@@ -1,0 +1,14 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: intel-device-plugins-operator
+  namespace: openshift-operators
+spec:
+  name: intel-device-plugins-operator
+  source: certified-operators
+  sourceNamespace: openshift-marketplace
+  channel: alpha
+  installPlanApproval: Automatic
+  startingCSV: intel-device-plugins-operator.v0.26.1
+
