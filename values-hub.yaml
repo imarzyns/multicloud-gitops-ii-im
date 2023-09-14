@@ -3,6 +3,7 @@ clusterGroup:
   isHubCluster: true
 
   namespaces:
+    - openshift-nfd
     - open-cluster-management
     - vault
     - golang-external-secrets
@@ -22,18 +23,25 @@ clusterGroup:
       # namespace: redhat-ods-operator
       namespace: openshift-operators
       # channel: stable
-    
+
     # openvino:
     #   name: openvino-operator
     #   namespace: openshift-operators
 
   projects:
+    - openshift-nfd
     - hub
     - config-demo
     - hello-world
     - hello-world-amx
 
   applications:
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      project: openshift-nfd
+      path: charts/all/nfd
+
     acm:
       name: acm
       namespace: open-cluster-management
