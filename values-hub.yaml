@@ -9,7 +9,7 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
-    - hello-world-amx
+    - hello-world-sgx
 
   subscriptions:
     acm:
@@ -33,7 +33,7 @@ clusterGroup:
     - hub
     - config-demo
     - hello-world
-    - hello-world-amx
+    - hello-world-sgx
 
   applications:
     nfd:
@@ -41,6 +41,12 @@ clusterGroup:
       namespace: openshift-nfd
       project: openshift-nfd
       path: charts/all/nfd
+
+    intel-device-plugins:
+      name: intel-device-plugins
+      namespace: openshift-operators
+      project: openshift-operators
+      path: charts/all/intel-device-plugins
 
     acm:
       name: acm
@@ -77,11 +83,11 @@ clusterGroup:
       project: hello-world
       path: charts/all/hello-world
 
-    hello-world-amx:
-      name: hello-world-amx
-      namespace: hello-world-amx
-      project: hello-world-amx
-      path: charts/all/hello-world-amx
+    hello-world-sgx:
+      name: hello-world-sgx
+      namespace: hello-world-sgx
+      project: hello-world-sgx
+      path: charts/all/hello-world-sgx
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
