@@ -21,7 +21,7 @@ spec:
       - name: apache
         image: seahorse911/httpd:bitnami-2.4.57-debian-11-r145-gramine
         # image: docker.io/bitnami/apache:2.4.57-debian-11-r145
-        # image: seahorse911/httpd:2.4.57-bookworm 
+        # image: seahorse911/httpd:2.4.57-bookworm
         # image: docker.io/library/httpd:2.4.57-bookworm
         # image: docker.io/library/nginx:1.25-bookworm
         #image: registry.access.redhat.com/ubi8/httpd-24:1-226
@@ -63,7 +63,7 @@ spec:
               - ALL
           seccompProfile:
             type: RuntimeDefault
-          runAsUser: 1000855555
+          runAsUser: 1000965555
           runAsGroup: 2000
           fsGroup: 3000
         resources:
