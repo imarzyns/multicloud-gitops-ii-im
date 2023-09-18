@@ -1,59 +1,98 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
+  name: hello-world-amx
+  namespace: hello-world-amx
   labels:
     application: hello-world-amx
-  name: hello-world-amx
+    argocd.argoproj.io/instance: hello-world-amx
 spec:
   replicas: 1
-  revisionHistoryLimit: 3
   selector:
     matchLabels:
       deploymentconfig: hello-world-amx
   template:
     metadata:
+      name: hello-world-amx
+      creationTimestamp: null
       labels:
         app: hello-world-amx
         deploymentconfig: hello-world-amx
-      name: hello-world-amx
     spec:
-      containers:
-      - name: apache
-        image: intel/recommendation:tf-spr-dien-inference
-        # image: registry.access.redhat.com/ubi8/httpd-24:1-226
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /var/www/html
-          name: hello-world-amx-configmap
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        livenessProbe:
-          httpGet:
-            path: /index.html
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 5
-          timeoutSeconds: 1
-          periodSeconds: 10
-          successThreshold: 1
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /index.html
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 5
-          timeoutSeconds: 1
-          periodSeconds: 10
-          successThreshold: 1
-          failureThreshold: 3
       volumes:
-      - name: hello-world-amx-configmap
-        configMap:
-          defaultMode: 438
-          name: hello-world-amx-configmap
+        - name: hello-world-amx-configmap
+          configMap:
+            name: hello-world-amx-configmap
+            defaultMode: 438
+        - name: dataset
+          persistentVolumeClaim:
+            claimName: dataset-pvc
+      initContainers:
+        - name: download-datasets
+          image: 'registry.redhat.io/rhel9/python-39:latest'
+          command:
+            - /bin/bash
+            - '-c'
+            - >-
+              apt install wget zip -y; wget
+              https://zenodo.org/record/3463683/files/data.tar.gz; tar -jxvf
+              data.tar.gz; mv data/* /tmp/dataset/; rm -Rf data.tar.gz; wget
+              https://zenodo.org/record/3463683/files/data1.tar.gz; tar -jxvf
+              data1.tar.gz; mv data1/* /tmp/dataset/; rm -Rf data1.tar.gz; wget
+              https://zenodo.org/record/3463683/files/data2.tar.gz; tar -jxvf
+              data2.tar.gz; mv data2/* /tmp/dataset/; rm -Rf data2.tar.gz;
+          resources: {}
+          volumeMounts:
+            - name: dataset
+              mountPath: /tmp/dataset
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: apache
+          env:
+            - name: DATASET_DIR
+              value: /tmp/dataset
+            - name: OUTPUT_DIR
+              value: /tmp/logs
+            - name: SCRIPT
+              value: accuracy.sh
+            - name: PRECISION
+              value: bfloat16
+            - name: ONEDNN_VERBOSE_TIMESTAMP
+              value: '1'
+            - name: ONEDNN_VERBOSE
+              value: '1'
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: hello-world-amx-configmap
+              mountPath: /var/www/html
+            - name: dataset
+              readOnly: true
+              mountPath: /tmp/dataset
+          terminationMessagePolicy: File
+          image: 'intel/recommendation:tf-spr-dien-inference'
+          args:
+            - /bin/bash
+            - '-c'
+            - /bin/bash quickstart/$(SCRIPT); sleep 24h
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 600
