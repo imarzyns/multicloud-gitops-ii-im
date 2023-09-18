@@ -25,7 +25,7 @@ spec:
         # image: docker.io/library/httpd:2.4.57-bookworm
         # image: docker.io/library/nginx:1.25-bookworm
         #image: registry.access.redhat.com/ubi8/httpd-24:1-226
-        imagePullPolicy: Always
+        #imagePullPolicy: Always
         ports:
         - containerPort: 8080
           name: http
