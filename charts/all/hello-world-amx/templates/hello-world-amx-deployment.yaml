@@ -19,6 +19,8 @@ spec:
         app: hello-world-amx
         deploymentconfig: hello-world-amx
     spec:
+      nodeSelector:
+        feature.node.kubernetes.io/cpu-cpuid.AMXBF16: 'true'
       volumes:
         - name: hello-world-amx-configmap
           configMap:
