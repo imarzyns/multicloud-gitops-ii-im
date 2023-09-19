@@ -19,8 +19,17 @@ TARGET_REPO=$(shell git ls-remote --get-url --symref $(TARGET_ORIGIN) | sed -e '
 # git branch --show-current is also available as of git 2.22, but we will use this for compatibility
 TARGET_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 
+UUID_FILE ?= ~/.config/validated-patterns/pattern-uuid
+UUID_HELM_OPTS ?=
+
 # --set values always take precedence over the contents of -f
-HELM_OPTS=-f values-global.yaml --set main.git.repoURL="$(TARGET_REPO)" --set main.git.revision=$(TARGET_BRANCH) $(TARGET_SITE_OPT) $(EXTRA_HELM_OPTS)
+ifneq ("$(wildcard $(UUID_FILE))","")
+	UUID := $(shell cat $(UUID_FILE))
+	UUID_HELM_OPTS := --set main.analyticsUUID=$(UUID)
+endif
+
+HELM_OPTS=-f values-global.yaml --set main.git.repoURL="$(TARGET_REPO)" --set main.git.revision=$(TARGET_BRANCH) $(TARGET_SITE_OPT) $(UUID_HELM_OPTS) $(EXTRA_HELM_OPTS)
+
 
 ##@ Pattern Common Tasks
 
@@ -35,21 +44,13 @@ help: ## This help message
 show: ## show the starting template without installing it
 	helm template common/operator-install/ --name-template $(NAME) $(HELM_OPTS)
 
-# Only call helm install if the CRD is missing. If it already exists just
-# push the templated files.
-# The reason we have two helm template calls in the else branch is to avoid
-# warnings when the chart gets applied the first time, but the resources were
-# created first via the VP operator's UI
 .PHONY: operator-deploy
 operator-deploy operator-upgrade: validate-prereq validate-origin ## runs helm install
-	@set -e; if ! oc get crds patterns.gitops.hybrid-cloud-patterns.io >/dev/null 2>&1; then \
-	  echo "Running helm:"; \
-	  helm upgrade --install $(NAME) common/operator-install/ $(HELM_OPTS); \
-	else \
-	  echo "Reapplying helm chart:"; \
-	  helm template --name-template $(NAME) common/operator-install/ $(HELM_OPTS) | oc apply set-last-applied --create-annotation -f-; \
-	  helm template --name-template $(NAME) common/operator-install/ $(HELM_OPTS) | oc apply -f-; \
-	fi
+	@set -e -o pipefail
+	# Retry five times because the CRD might not be fully installed yet
+	for i in {1..5}; do \
+		helm template --include-crds --name-template $(NAME) common/operator-install/ $(HELM_OPTS) | oc apply -f- && break || sleep 10; \
+	done
 
 .PHONY: uninstall
 uninstall: ## runs helm uninstall
@@ -67,6 +68,9 @@ load-iib: ## CI target to install Index Image Bundles
 		for IIB in $(shell echo $(INDEX_IMAGES) | tr ',' '\n'); do \
 			INDEX_IMAGE="$${IIB}" ansible-playbook common/ansible/playbooks/iib-ci/iib-ci.yaml; \
 		done; \
+	else \
+		echo "No INDEX_IMAGES defined. Bailing out"; \
+		exit 1; \
 	fi
 
 
