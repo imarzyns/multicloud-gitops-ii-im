@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    application: python-hello-world-sgx
+  name: python-hello-world-sgx
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      deploymentconfig: python-hello-world-sgx
+  template:
+    metadata:
+      labels:
+        app: python-hello-world-sgx
+        deploymentconfig: python-hello-world-sgx
+      name: python-hello-world-sgx
+    spec:
+      containers:
+      - name: python
+        image: seahorse911/python-hello-world:gramine
+        #imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          seccompProfile:
+            type: RuntimeDefault
+          # runAsUser: 1000965555
+          # runAsGroup: 2000
+          # fsGroup: 3000
+        resources:
+          requests:
+            sgx.intel.com/epc: "1Gi"
+          limits:
+            sgx.intel.com/epc: "1Gi"

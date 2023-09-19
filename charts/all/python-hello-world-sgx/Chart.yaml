@@ -1,0 +1,6 @@
+apiVersion: v2
+description: A Helm chart to deploy secured version of Python's hello world
+keywords:
+- pattern
+name: python-hello-world-sgx
+version: 0.0.1
