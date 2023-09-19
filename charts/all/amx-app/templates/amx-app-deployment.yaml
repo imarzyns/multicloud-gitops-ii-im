@@ -1,31 +1,27 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: hello-world-amx
-  namespace: hello-world-amx
+  name: amx-app
+  namespace: amx-app
   labels:
-    application: hello-world-amx
-    argocd.argoproj.io/instance: hello-world-amx
+    application: amx-app
+    argocd.argoproj.io/instance: amx-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      deploymentconfig: hello-world-amx
+      deploymentconfig: amx-app
   template:
     metadata:
-      name: hello-world-amx
+      name: amx-app
       creationTimestamp: null
       labels:
-        app: hello-world-amx
-        deploymentconfig: hello-world-amx
+        app: amx-app
+        deploymentconfig: amx-app
     spec:
       nodeSelector:
         feature.node.kubernetes.io/cpu-cpuid.AMXBF16: 'true'
       volumes:
-        - name: hello-world-amx-configmap
-          configMap:
-            name: hello-world-amx-configmap
-            defaultMode: 438
         - name: dataset
           persistentVolumeClaim:
             claimName: dataset-pvc
@@ -53,7 +49,7 @@ spec:
       containers:
         - resources: {}
           terminationMessagePath: /dev/termination-log
-          name: apache
+          name: run-inference
           env:
             - name: DATASET_DIR
               value: /tmp/dataset
@@ -67,14 +63,8 @@ spec:
               value: '1'
             - name: ONEDNN_VERBOSE
               value: '1'
-          ports:
-            - name: http
-              containerPort: 8080
-              protocol: TCP
           imagePullPolicy: Always
           volumeMounts:
-            - name: hello-world-amx-configmap
-              mountPath: /var/www/html
             - name: dataset
               readOnly: true
               mountPath: /tmp/dataset
