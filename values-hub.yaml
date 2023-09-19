@@ -9,7 +9,7 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
-    - hello-world-sgx
+    # - hello-world-sgx
     - python-hello-world-sgx
 
   subscriptions:
@@ -34,7 +34,7 @@ clusterGroup:
     - hub
     - config-demo
     - hello-world
-    - hello-world-sgx
+    # - hello-world-sgx
     - python-hello-world-sgx
 
   applications:
@@ -85,11 +85,11 @@ clusterGroup:
       project: hello-world
       path: charts/all/hello-world
 
-    hello-world-sgx:
-      name: hello-world-sgx
-      namespace: hello-world-sgx
-      project: hello-world-sgx
-      path: charts/all/hello-world-sgx
+    # hello-world-sgx:
+    #   name: hello-world-sgx
+    #   namespace: hello-world-sgx
+    #   project: hello-world-sgx
+    #   path: charts/all/hello-world-sgx
 
     python-hello-world-sgx:
       name: python-hello-world-sgx
