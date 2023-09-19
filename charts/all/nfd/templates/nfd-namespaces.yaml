@@ -1,0 +1,11 @@
+# Intel
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-nfd
+  labels:
+    kubernetes.io/metadata.name: openshift-nfd
+  annotations:
+  labels:
+spec:
