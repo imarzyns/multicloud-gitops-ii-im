@@ -10,6 +10,7 @@ clusterGroup:
     - config-demo
     - hello-world
     - hello-world-sgx
+    - python-hello-world-sgx
 
   subscriptions:
     acm:
@@ -34,6 +35,7 @@ clusterGroup:
     - config-demo
     - hello-world
     - hello-world-sgx
+    - python-hello-world-sgx
 
   applications:
     nfd:
@@ -88,6 +90,12 @@ clusterGroup:
       namespace: hello-world-sgx
       project: hello-world-sgx
       path: charts/all/hello-world-sgx
+
+    python-hello-world-sgx:
+      name: python-hello-world-sgx
+      namespace: python-hello-world-sgx
+      project: python-hello-world-sgx
+      path: charts/all/python-hello-world-sgx
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
