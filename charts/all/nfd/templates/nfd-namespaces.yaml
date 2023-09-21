@@ -1,11 +1,10 @@
-# Intel
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: openshift-nfd
+  name: {{ .Values.nfd.namespace }}
   labels:
-    kubernetes.io/metadata.name: openshift-nfd
+    kubernetes.io/metadata.name: {{ .Values.nfd.namespace }}
   annotations:
-  labels:
+    argocd.argoproj.io/sync-wave: "-5"
 spec:
