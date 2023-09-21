@@ -1,13 +1,13 @@
-kind: RoleBinding
+kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: anyuid-scc-rolebinding
-  namespace: amx-app
-subjects:
-  - kind: ServiceAccount
-    name: default
-    namespace: amx-app
-roleRef:
-  kind: ClusterRole
   name: anyuid-scc-role
-  apiGroup: rbac.authorization.k8s.io
+rules:
+- apiGroups:
+  - security.openshift.io
+  resourceNames:
+  - anyuid
+  resources:
+  - securitycontextconstraints
+  verbs:
+  - use
