@@ -7,6 +7,8 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 3
+  imagePullSecrets:
+    - name: regcred
   selector:
     matchLabels:
       deploymentconfig: python-hello-world-sgx
@@ -20,7 +22,7 @@ spec:
       containers:
       - name: python
         image: seahorse911/python-hello-world:gramine
-        #imagePullPolicy: Always
+        imagePullPolicy: Always
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
