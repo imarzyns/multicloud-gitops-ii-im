@@ -18,6 +18,11 @@ clusterGroup:
       channel: release-2.8
       #csv: advanced-cluster-management.v2.6.1
 
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      channel: stable
+
   projects:
     - hub
     - config-demo
