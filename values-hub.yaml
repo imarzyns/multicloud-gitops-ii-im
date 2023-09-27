@@ -18,10 +18,10 @@ clusterGroup:
       channel: release-2.8
       #csv: advanced-cluster-management.v2.6.1
 
-      #    nfd:
-      #      name: nfd
-      #      namespace: openshift-nfd
-      #      channel: stable
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      channel: stable
 
   projects:
     - hub
@@ -31,11 +31,11 @@ clusterGroup:
     - amx-app
 
   applications:
-    nfd:
-      name: nfd
-      namespace: openshift-nfd
-      project: openshift-nfd
-      path: charts/all/nfd
+          #    nfd:
+          #      name: nfd
+          #      namespace: openshift-nfd
+          #      project: openshift-nfd
+          #      path: charts/all/nfd
 
     acm:
       name: acm
