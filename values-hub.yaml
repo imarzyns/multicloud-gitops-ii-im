@@ -32,12 +32,6 @@ clusterGroup:
     - amx-app
 
   applications:
-    nfd:
-      name: nfd
-      namespace: openshift-nfd
-      project: openshift-nfd
-      path: charts/all/nfd
-
     acm:
       name: acm
       namespace: open-cluster-management
