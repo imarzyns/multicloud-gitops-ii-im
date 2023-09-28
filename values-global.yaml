@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: multicloud-gitops-ii
+  pattern: multicloud-gitops-sgx
 
   options:
     useCSV: false
