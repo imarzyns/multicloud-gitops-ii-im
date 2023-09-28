@@ -19,11 +19,17 @@ clusterGroup:
       channel: release-2.8
       #csv: advanced-cluster-management.v2.6.1
 
-    rhods:
-      name: rhods-operator
-      # namespace: redhat-ods-operator
-      namespace: openshift-operators
-      # channel: stable
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      channel: stable
+      source: operators413
+
+    # rhods:
+    #   name: rhods-operator
+    #   # namespace: redhat-ods-operator
+    #   namespace: openshift-operators
+    #   # channel: stable
 
     # openvino:
     #   name: openvino-operator
