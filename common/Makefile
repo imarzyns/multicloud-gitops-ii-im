@@ -45,7 +45,7 @@ show: ## show the starting template without installing it
 	helm template common/operator-install/ --name-template $(NAME) $(HELM_OPTS)
 
 .PHONY: operator-deploy
-operator-deploy operator-upgrade: validate-prereq validate-origin ## runs helm install
+operator-deploy operator-upgrade: validate-prereq validate-origin validate-cluster ## runs helm install
 	@set -e -o pipefail
 	# Retry five times because the CRD might not be fully installed yet
 	for i in {1..5}; do \
@@ -90,6 +90,19 @@ validate-origin: ## verify the git origin is available
 		echo "Running inside a container: Skipping git ssh checks";\
 	fi
 
+.PHONY: validate-cluster
+validate-cluster: ## Do some cluster validations before installing
+	@echo "Checking cluster:"
+	@echo -n "  cluster-info: "
+	@oc cluster-info >/dev/null && echo "OK" || (echo "Error"; exit 1)
+	@echo -n "  storageclass: "
+	@if [ `oc get storageclass -o go-template='{{printf "%d\n" (len .items)}}'` -eq 0 ]; then\
+		echo "None Found"; exit 1;\
+	else\
+		echo "OK";\
+	fi
+
+
 .PHONY: validate-schema
 validate-schema: ## validates values files against schema in common/clustergroup
 	$(eval VAL_PARAMS := $(shell for i in ./values-*.yaml; do echo -n "$${i} "; done))
@@ -108,6 +121,30 @@ validate-prereq: ## verify pre-requisites
 	@echo -n "  Check for kubernetes.core collection: "
 	@if ! ansible-galaxy collection list | grep kubernetes.core > /dev/null 2>&1; then echo "Not found"; exit 1; fi
 	@echo "OK"
+
+.PHONY: argo-healthcheck
+argo-healthcheck: ## Checks if all argo applications are synced
+	@echo "Checking argo applications"
+	$(eval APPS := $(shell oc get applications -A -o jsonpath='{range .items[*]}{@.metadata.namespace}{","}{@.metadata.name}{"\n"}{end}'))
+	@NOTOK=0; \
+	for i in $(APPS); do\
+		n=`echo "$${i}" | cut -f1 -d,`;\
+		a=`echo "$${i}" | cut -f2 -d,`;\
+		STATUS=`oc get -n "$${n}" application/"$${a}" -o jsonpath='{.status.sync.status}'`;\
+		if [[ $$STATUS != "Synced" ]]; then\
+			NOTOK=$$(( $${NOTOK} + 1));\
+		fi;\
+		HEALTH=`oc get -n "$${n}" application/"$${a}" -o jsonpath='{.status.health.status}'`;\
+		if [[ $$HEALTH != "Healthy" ]]; then\
+			NOTOK=$$(( $${NOTOK} + 1));\
+		fi;\
+		echo "$${n} $${a} -> Sync: $${STATUS} - Health: $${HEALTH}";\
+	done;\
+	if [ $${NOTOK} -gt 0 ]; then\
+	    echo "Some applications are not synced or are unhealthy";\
+	    exit 1;\
+	fi
+
 
 ##@ Test and Linters Tasks
 
