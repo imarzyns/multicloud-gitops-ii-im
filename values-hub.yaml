@@ -25,6 +25,12 @@ clusterGroup:
       channel: stable
       source: operators413
 
+    intel-device-plugins-operator:
+      name: intel-device-plugins-operator
+      namespace: openshift-operators
+      channel: alpha
+      source: certified-operators
+
     # rhods:
     #   name: rhods-operator
     #   # namespace: redhat-ods-operator
