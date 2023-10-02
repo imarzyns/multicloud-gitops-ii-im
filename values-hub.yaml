@@ -25,11 +25,13 @@ clusterGroup:
       channel: stable
       source: operators413
 
-    intel-device-plugins-operator:
-      name: intel-device-plugins-operator
-      namespace: openshift-operators
-      channel: alpha
-      source: certified-operators
+    # TS: Does not work, because gives an error:
+    # Unable to load data: error getting app project: error getting app project "openshift-operators": appproject.argoproj.io "openshift-operators" not found
+    # intel-device-plugins-operator:
+    #   name: intel-device-plugins-operator
+    #   namespace: openshift-operators
+    #   channel: alpha
+    #   source: certified-operators
 
     # rhods:
     #   name: rhods-operator
