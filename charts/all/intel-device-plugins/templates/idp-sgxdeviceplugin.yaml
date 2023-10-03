@@ -10,6 +10,6 @@ spec:
   initImage: registry.connect.redhat.com/intel/intel-sgx-initcontainer@sha256:32f57874eb547161be985778b8b193dce1cbfebcaa0344cabb605481db9f0ab3
   enclaveLimit: 110
   provisionLimit: 110
-  logLevel: 4
+  logLevel: 5
   nodeSelector:
     intel.feature.node.kubernetes.io/sgx: "true"
