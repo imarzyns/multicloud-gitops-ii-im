@@ -23,7 +23,7 @@ clusterGroup:
       name: nfd
       namespace: openshift-nfd
       channel: stable
-      source: operators413
+      source: redhat-operators
 
     # TS: Does not work, because gives an error:
     # Unable to load data: error getting app project: error getting app project "openshift-operators": appproject.argoproj.io "openshift-operators" not found
