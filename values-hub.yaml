@@ -50,6 +50,7 @@ clusterGroup:
     - hello-world
     # - hello-world-sgx
     - python-hello-world-sgx
+    - openshift-operators
 
   applications:
     nfd:
