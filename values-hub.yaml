@@ -22,7 +22,6 @@ clusterGroup:
       name: nfd
       namespace: openshift-nfd
       channel: stable
-      #      source: operators413
       source: redhat-operators
 
   projects:
@@ -73,6 +72,12 @@ clusterGroup:
       namespace: amx-app
       project: amx-app
       path: charts/all/amx-app
+
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      project: openshift-nfd
+      path: charts/all/nfd
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
