@@ -10,6 +10,7 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - amx-app
+    - redhat-ods-operator
 
   subscriptions:
     acm:
@@ -21,6 +22,12 @@ clusterGroup:
     nfd:
       name: nfd
       namespace: openshift-nfd
+      channel: stable
+      source: redhat-operators
+
+    rhods: 
+      name: rhods
+      namespace: redhat-ods-operator
       channel: stable
       source: redhat-operators
 
