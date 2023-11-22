@@ -11,4 +11,3 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   channel: stable
-  installPlanApproval: Automatic
