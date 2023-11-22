@@ -1,0 +1,6 @@
+apiVersion: v2
+description: A Helm chart for RHODS (Red Hat OpenShift Data Science) deployment
+keywords:
+- rhods
+name: rhods
+version: 0.0.1

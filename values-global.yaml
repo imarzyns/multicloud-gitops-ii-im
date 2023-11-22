@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: multicloud-gitops-amx
+  pattern: multicloud-gitops-rhods
 
   options:
     useCSV: false

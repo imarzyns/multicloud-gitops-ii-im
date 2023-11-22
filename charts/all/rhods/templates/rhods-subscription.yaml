@@ -1,0 +1,14 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: rhods
+  namespace: {{ .Values.rhodes.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  name: rhods
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  channel: stable
+  installPlanApproval: Automatic
