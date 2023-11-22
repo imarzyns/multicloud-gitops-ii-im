@@ -10,7 +10,6 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - amx-app
-    - redhat-ods-operator
 
   subscriptions:
     acm:
