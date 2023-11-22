@@ -25,12 +25,6 @@ clusterGroup:
       channel: stable
       source: redhat-operators
 
-    rhods: 
-      name: rhods
-      namespace: redhat-ods-operator
-      channel: stable
-      source: redhat-operators
-
   projects:
     - hub
     - config-demo
@@ -87,11 +81,11 @@ clusterGroup:
       project: openshift-nfd
       path: charts/all/nfd
 
-    rhods:
-      name: rhods
+    rhods-operator:
+      name: rhods-operator
       namespace: redhat-ods-operator
       project: redhat-ods-operator
-      path: charts/all/rhods
+      path: charts/all/rhods-operator
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm

@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.rhods-operator.namespace }}
+  labels:
+    kubernetes.io/metadata.name: {{ .Values.rhods-operator.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
+spec:
