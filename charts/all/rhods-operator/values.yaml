@@ -1,2 +1,2 @@
-rhods-operator:
+rhods:
   namespace: redhat-ods-operator
