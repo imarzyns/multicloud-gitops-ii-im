@@ -31,7 +31,6 @@ clusterGroup:
     - openshift-nfd
     - amx-app
     - redhat-ods-operator
-    - openshift-operators
 
   applications:
     acm:
