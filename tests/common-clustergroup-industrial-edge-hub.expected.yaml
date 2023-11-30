@@ -204,6 +204,37 @@ data:
           project: datacenter
           repoURL: https://helm.releases.hashicorp.com
           targetRevision: v0.20.1
+      argoCD:
+        configManagementPlugins:
+        - image: quay.io/hybridcloudpatterns/utility-container:latest
+          name: helm-with-kustomize
+          pluginArgs:
+          - --loglevel=debug
+          pluginConfig: |
+            apiVersion: argoproj.io/v1alpha1
+            kind: ConfigManagementPlugin
+            metadata:
+              name: helm-with-kustomize
+            spec:
+              preserveFileMode: true
+              init:
+                command: ["/bin/sh", "-c"]
+                args: ["helm dependency build"]
+              generate:
+                command: ["/bin/bash", "-c"]
+                args: ["helm template . --name-template ${ARGOCD_APP_NAME:0:52}
+                  -f $(git rev-parse --show-toplevel)/values-global.yaml
+                  -f $(git rev-parse --show-toplevel)/values-datacenter.yaml
+                  --set global.repoURL=$ARGOCD_APP_SOURCE_REPO_URL
+                  --set global.targetRevision=$ARGOCD_APP_SOURCE_TARGET_REVISION
+                  --set global.namespace=$ARGOCD_APP_NAMESPACE
+                  --set global.pattern=mypattern
+                  --set global.clusterDomain=region.example.com
+                  --set global.hubClusterDomain=apps.hub.example.com
+                  --set global.localClusterDomain=apps.region.example.com
+                  --set clusterGroup.name=datacenter
+                  --post-renderer ./kustomize"]
+        initContainers: []
       imperative:
         activeDeadlineSeconds: 3600
         clusterRoleName: imperative-cluster-role
@@ -257,6 +288,7 @@ data:
       - production-datalake
       - golang-external-secrets
       - vault
+      sharedValueFiles: []
       subscriptions:
         acm:
           channel: release-2.6
@@ -297,6 +329,8 @@ data:
     enabled: all
     global:
       clusterDomain: region.example.com
+      clusterPlatform: aws
+      clusterVersion: "4.12"
       extraValueFiles: []
       hubClusterDomain: apps.hub.example.com
       localClusterDomain: apps.region.example.com
@@ -314,9 +348,43 @@ data:
       git:
         repoURL: https://github.com/pattern-clone/mypattern
         revision: main
+      multiSourceConfig:
+        enabled: true
     secretStore:
       kind: ClusterSecretStore
       name: vault-backend
+---
+# Source: clustergroup/templates/plumbing/argocd-cmp-plugin-cms.yaml
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: "argocd-cmp-helm-with-kustomize"
+  namespace: mypattern-datacenter
+data:
+  "plugin.yaml": | 
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: helm-with-kustomize
+    spec:
+      preserveFileMode: true
+      init:
+        command: ["/bin/sh", "-c"]
+        args: ["helm dependency build"]
+      generate:
+        command: ["/bin/bash", "-c"]
+        args: ["helm template . --name-template ${ARGOCD_APP_NAME:0:52}
+          -f $(git rev-parse --show-toplevel)/values-global.yaml
+          -f $(git rev-parse --show-toplevel)/values-datacenter.yaml
+          --set global.repoURL=$ARGOCD_APP_SOURCE_REPO_URL
+          --set global.targetRevision=$ARGOCD_APP_SOURCE_TARGET_REVISION
+          --set global.namespace=$ARGOCD_APP_NAMESPACE
+          --set global.pattern=mypattern
+          --set global.clusterDomain=region.example.com
+          --set global.hubClusterDomain=apps.hub.example.com
+          --set global.localClusterDomain=apps.region.example.com
+          --set clusterGroup.name=datacenter
+          --post-renderer ./kustomize"]
 ---
 # Source: clustergroup/templates/imperative/clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -680,7 +748,11 @@ spec:
       ignoreMissingValueFiles: true
       valueFiles:
       - "/values-global.yaml"
-      - "/values-datacenter.yaml" 
+      - "/values-datacenter.yaml"
+      - "/values-aws.yaml"
+      - "/values-aws-4.12.yaml"
+      - "/values-aws-datacenter.yaml"
+      - "/values-4.12-datacenter.yaml" 
       parameters:
         - name: global.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
@@ -693,9 +765,9 @@ spec:
         - name: global.clusterDomain
           value: region.example.com
         - name: global.clusterVersion
-          value: ""
+          value: "4.12"
         - name: global.clusterPlatform
-          value: ""
+          value: "aws"
         - name: global.hubClusterDomain
           value: apps.hub.example.com
         - name: global.localClusterDomain
@@ -737,7 +809,11 @@ spec:
       ignoreMissingValueFiles: true
       valueFiles:
       - "/values-global.yaml"
-      - "/values-datacenter.yaml" 
+      - "/values-datacenter.yaml"
+      - "/values-aws.yaml"
+      - "/values-aws-4.12.yaml"
+      - "/values-aws-datacenter.yaml"
+      - "/values-4.12-datacenter.yaml" 
       parameters:
         - name: global.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
@@ -750,9 +826,9 @@ spec:
         - name: global.clusterDomain
           value: region.example.com
         - name: global.clusterVersion
-          value: ""
+          value: "4.12"
         - name: global.clusterPlatform
-          value: ""
+          value: "aws"
         - name: global.hubClusterDomain
           value: apps.hub.example.com
         - name: global.localClusterDomain
@@ -785,7 +861,11 @@ spec:
       ignoreMissingValueFiles: true
       valueFiles:
       - "/values-global.yaml"
-      - "/values-datacenter.yaml" 
+      - "/values-datacenter.yaml"
+      - "/values-aws.yaml"
+      - "/values-aws-4.12.yaml"
+      - "/values-aws-datacenter.yaml"
+      - "/values-4.12-datacenter.yaml" 
       parameters:
         - name: global.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
@@ -798,9 +878,9 @@ spec:
         - name: global.clusterDomain
           value: region.example.com
         - name: global.clusterVersion
-          value: ""
+          value: "4.12"
         - name: global.clusterPlatform
-          value: ""
+          value: "aws"
         - name: global.hubClusterDomain
           value: apps.hub.example.com
         - name: global.localClusterDomain
@@ -833,7 +913,11 @@ spec:
       ignoreMissingValueFiles: true
       valueFiles:
       - "/values-global.yaml"
-      - "/values-datacenter.yaml" 
+      - "/values-datacenter.yaml"
+      - "/values-aws.yaml"
+      - "/values-aws-4.12.yaml"
+      - "/values-aws-datacenter.yaml"
+      - "/values-4.12-datacenter.yaml" 
       parameters:
         - name: global.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
@@ -846,9 +930,9 @@ spec:
         - name: global.clusterDomain
           value: region.example.com
         - name: global.clusterVersion
-          value: ""
+          value: "4.12"
         - name: global.clusterPlatform
-          value: ""
+          value: "aws"
         - name: global.hubClusterDomain
           value: apps.hub.example.com
         - name: global.localClusterDomain
@@ -911,7 +995,11 @@ spec:
       ignoreMissingValueFiles: true
       valueFiles:
       - "/values-global.yaml"
-      - "/values-datacenter.yaml" 
+      - "/values-datacenter.yaml"
+      - "/values-aws.yaml"
+      - "/values-aws-4.12.yaml"
+      - "/values-aws-datacenter.yaml"
+      - "/values-4.12-datacenter.yaml" 
       parameters:
         - name: global.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
@@ -924,9 +1012,9 @@ spec:
         - name: global.clusterDomain
           value: region.example.com
         - name: global.clusterVersion
-          value: ""
+          value: "4.12"
         - name: global.clusterPlatform
-          value: ""
+          value: "aws"
         - name: global.hubClusterDomain
           value: apps.hub.example.com
         - name: global.localClusterDomain
@@ -959,7 +1047,11 @@ spec:
       ignoreMissingValueFiles: true
       valueFiles:
       - "/values-global.yaml"
-      - "/values-datacenter.yaml" 
+      - "/values-datacenter.yaml"
+      - "/values-aws.yaml"
+      - "/values-aws-4.12.yaml"
+      - "/values-aws-datacenter.yaml"
+      - "/values-4.12-datacenter.yaml" 
       parameters:
         - name: global.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
@@ -972,9 +1064,9 @@ spec:
         - name: global.clusterDomain
           value: region.example.com
         - name: global.clusterVersion
-          value: ""
+          value: "4.12"
         - name: global.clusterPlatform
-          value: ""
+          value: "aws"
         - name: global.hubClusterDomain
           value: apps.hub.example.com
         - name: global.localClusterDomain
@@ -1034,7 +1126,11 @@ spec:
       ignoreMissingValueFiles: true
       valueFiles:
       - "/values-global.yaml"
-      - "/values-datacenter.yaml" 
+      - "/values-datacenter.yaml"
+      - "/values-aws.yaml"
+      - "/values-aws-4.12.yaml"
+      - "/values-aws-datacenter.yaml"
+      - "/values-4.12-datacenter.yaml" 
       parameters:
         - name: global.repoURL
           value: $ARGOCD_APP_SOURCE_REPO_URL
@@ -1047,9 +1143,9 @@ spec:
         - name: global.clusterDomain
           value: region.example.com
         - name: global.clusterVersion
-          value: ""
+          value: "4.12"
         - name: global.clusterPlatform
-          value: ""
+          value: "aws"
         - name: global.hubClusterDomain
           value: apps.hub.example.com
         - name: global.localClusterDomain
@@ -1114,36 +1210,6 @@ spec:
       return hs
 
   applicationInstanceLabelKey: argocd.argoproj.io/instance
-  # Not the greatest way to pass git/quay info to sub-applications, but it will do until
-  # we can support helmChart with kustomize
-  # The other option is to pass them in as environment variables eg. BLUEPRINT_VERSION
-  configManagementPlugins: |
-    - name: kustomize-version
-      generate:
-        command: ["sh", "-c"]
-        args: ["kustomize version 1>&2 && exit 1"]
-    - name: kustomize-with-helm
-      generate:
-        command: ["kustomize"]
-        args: ["build", "--enable-helm"]
-    - name: helm-with-kustomize
-      init:
-        command: ["/bin/sh", "-c"]
-        args: ["helm dependency build"]
-      generate:
-        command: ["/bin/bash", "-c"]
-        args: ["helm template . --name-template ${ARGOCD_APP_NAME:0:52}
-            -f $(git rev-parse --show-toplevel)/values-global.yaml
-            -f $(git rev-parse --show-toplevel)/values-datacenter.yaml
-            --set global.repoURL=$ARGOCD_APP_SOURCE_REPO_URL
-            --set global.targetRevision=$ARGOCD_APP_SOURCE_TARGET_REVISION
-            --set global.namespace=$ARGOCD_APP_NAMESPACE
-            --set global.pattern=mypattern
-            --set global.clusterDomain=region.example.com
-            --set global.hubClusterDomain=apps.hub.example.com
-            --set global.localClusterDomain=apps.region.example.com
-            --set clusterGroup.name=datacenter
-            --post-renderer ./kustomize"]
   applicationSet:
     resources:
       limits:
@@ -1176,6 +1242,32 @@ spec:
   rbac:
     defaultPolicy: role:admin
   repo:
+    sidecarContainers:
+      - name: helm-with-kustomize
+        command: [/var/run/argocd/argocd-cmp-server]
+        args: [
+  "--loglevel=debug"
+]
+        image: quay.io/hybridcloudpatterns/utility-container:latest
+        imagePullPolicy: Always
+        securityContext:
+          runAsNonRoot: true
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: cmp-tmp
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: plugin.yaml
+            name: helm-with-kustomize
+    volumes:
+      - emptyDir: {}
+        name: cmp-tmp
+      - configMap:
+          name: "argocd-cmp-helm-with-kustomize"
+        name: helm-with-kustomize
     resources:
       limits:
         cpu: "1"
