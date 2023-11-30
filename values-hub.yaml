@@ -31,6 +31,7 @@ clusterGroup:
     - openshift-nfd
     - amx-app
     - redhat-ods-operator
+    - openshift-operators
 
   applications:
     acm:
@@ -85,6 +86,12 @@ clusterGroup:
       namespace: redhat-ods-operator
       project: redhat-ods-operator
       path: charts/all/rhods-operator
+
+    ovms-operator:
+      name: ovms-operator
+      namespace: openshift-operators
+      project: openshift-operators
+      path: charts/all/openvino
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
