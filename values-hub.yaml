@@ -10,6 +10,7 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - amx-app
+    - openshift-operators
 
   subscriptions:
     acm:
@@ -23,6 +24,12 @@ clusterGroup:
       namespace: openshift-nfd
       channel: stable
       source: redhat-operators
+    
+    ovms:
+      name: ovms-operator
+      namespace: openshift-operators
+      channel: alpha
+      source: certified-operators
 
   projects:
     - hub
