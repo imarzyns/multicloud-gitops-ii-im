@@ -11,19 +11,19 @@ clusterGroup:
     - openshift-nfd
     - amx-app
 
-  subscriptions:
-    ovms:
-      name: ovms-operator
-      namespace: openshift-operators
-      channel: alpha
-      source: certified-operators
-        
+  subscriptions: 
     acm:
       name: advanced-cluster-management
       namespace: open-cluster-management
       channel: release-2.8
       #csv: advanced-cluster-management.v2.6.1
-
+      
+    ovms:
+      name: ovms-operator
+      namespace: openshift-operators
+      channel: alpha
+      source: certified-operators
+       
     nfd:
       name: nfd
       namespace: openshift-nfd
