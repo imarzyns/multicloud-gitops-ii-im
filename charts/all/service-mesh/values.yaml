@@ -1,0 +1,2 @@
+servicemesh:
+  namespace: openshift-servicemesh

@@ -1,0 +1,36 @@
+---
+- name: Creates directories for certs and keys
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ client_cert_key_path }}"
+    - "{{ server_cert_key_path }}"
+
+# Create a root certificate and private key to sign the certificates for services
+- name: Create private key (RSA, 4096 bits)
+  community.crypto.openssl_privatekey:
+    path: "{{ client_cert_key_path }}.key"
+
+- name: Create simple self-signed certificate
+  community.crypto.x509_certificate:
+    path: "{{ client_cert_key_path }}.pem"
+    privatekey_path: "{{ client_cert_key_path }}.key"
+    provider: selfsigned
+
+# Generate a certificate and a private key for domain
+- name: Create certificate signing request (CSR) for self-signed certificate
+  community.crypto.openssl_csr_pipe:
+    privatekey_path: "{{ server_cert_key_path }}.key"
+    common_name: httpbin.example.com
+    organization_name: httpbin organization
+    subject_alt_name:
+      - "DNS:httpbin.example.com"
+  register: csr
+
+- name: Create self-signed certificate from CSR
+  community.crypto.x509_certificate:
+    path: "{{ server_cert_key_path }}.pem"
+    csr_content: "{{ csr.csr }}"
+    privatekey_path: "{{ server_cert_key_path }}.key"
+    provider: selfsigned

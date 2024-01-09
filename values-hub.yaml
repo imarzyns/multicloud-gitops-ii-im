@@ -24,6 +24,30 @@ clusterGroup:
       channel: stable
       source: redhat-operators
 
+    elasticsearch:
+      name: elasticsearch-operator
+      namespace: openshift-operators-redhat
+      channel: stable
+      source: redhat-operators
+
+    jaeger:
+      name: jaeger-product
+      namespace: openshift-distributed-tracing
+      channel: stable
+      source: redhat-operators
+
+    kiali:
+      name: kiali-ossm
+      namespace: openshift-operators
+      channel: stable
+      source: redhat-operators
+
+    servicemesh:
+      name: servicemeshoperator
+      namespace: openshift-operators
+      channel: stable
+      source: redhat-operators
+
   projects:
     - hub
     - config-demo

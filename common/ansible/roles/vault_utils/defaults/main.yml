@@ -22,3 +22,5 @@ external_secrets_sa: golang-external-secrets
 external_secrets_secret: golang-external-secrets
 unseal_secret: "vaultkeys"
 unseal_namespace: "imperative"
+client_cert_key_path: "/tmp/certs/example.com"
+server_cert_key_path: "/tmp/certs/httpbin.example.com"
