@@ -57,6 +57,10 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - amx-app
+    - elasticsearch
+    - jaeger
+    - kiali
+    - servicemesh
 
   applications:
     acm:
@@ -105,6 +109,12 @@ clusterGroup:
       namespace: openshift-nfd
       project: openshift-nfd
       path: charts/all/nfd
+
+    servicemesh:
+      name: servicemesh
+      namespace: openshift-operators
+      project: servicemesh
+      path: charts/all/service-mesh
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
