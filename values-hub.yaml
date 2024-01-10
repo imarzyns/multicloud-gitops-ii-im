@@ -10,6 +10,9 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - amx-app
+    - openshift-operators-redhat
+    - openshift-distributed-tracing
+    - openshift-operators
 
   subscriptions:
     acm:
