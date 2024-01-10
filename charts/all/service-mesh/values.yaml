@@ -1,2 +1,9 @@
 servicemesh:
   namespace: openshift-servicemesh
+
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+
+applicationsecret:
+  key: secret/global
