@@ -10,9 +10,7 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - amx-app
-    - openshift-operators-redhat
-    - openshift-distributed-tracing
-    - openshift-operators
+    - istio-system
 
   subscriptions:
     acm:
@@ -27,29 +25,11 @@ clusterGroup:
       channel: stable
       source: redhat-operators
 
-    elasticsearch:
-      name: elasticsearch-operator
-      namespace: openshift-operators-redhat
-      channel: stable
-      source: redhat-operators
-
-    jaeger:
-      name: jaeger-product
-      namespace: openshift-distributed-tracing
-      channel: stable
-      source: redhat-operators
-
-    kiali:
-      name: kiali-ossm
-      namespace: openshift-operators
-      channel: stable
-      source: redhat-operators
-
-    servicemesh:
-      name: servicemeshoperator
-      namespace: openshift-operators
-      channel: stable
-      source: redhat-operators
+    istio:
+      name: istio
+      namespace: istio-system
+      channel: 3.0-nightly
+      source: community-operators
 
   projects:
     - hub
@@ -57,10 +37,7 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - amx-app
-    - elasticsearch
-    - jaeger
-    - kiali
-    - servicemesh
+    - istio
 
   applications:
     acm:
@@ -110,11 +87,11 @@ clusterGroup:
       project: openshift-nfd
       path: charts/all/nfd
 
-    servicemesh:
-      name: servicemesh
-      namespace: openshift-operators
-      project: servicemesh
-      path: charts/all/service-mesh
+    istio:
+      name: istio
+      namespace: istio-system
+      project: istio
+      path: charts/all/istio
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm

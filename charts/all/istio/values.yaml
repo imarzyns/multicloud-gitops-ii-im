@@ -1,5 +1,5 @@
 servicemesh:
-  namespace: openshift-servicemesh
+  namespace: istio-system
 
 secretStore:
   name: vault-backend
