@@ -22,8 +22,8 @@ rbac:
       scope:
         cluster: true
       resources:
-        - nodes
-        - deployments.apps
+        - namespaces
+        - deployments
       verbs:
         - "get"
         - "list"
