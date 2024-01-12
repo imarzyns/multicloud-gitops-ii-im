@@ -19,6 +19,7 @@ rbac:
       createRole: true
       apiGroups:
         - '""'
+        - '"apps"'
       scope:
         cluster: true
       resources:
