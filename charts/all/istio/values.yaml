@@ -1,5 +1,6 @@
-servicemesh:
+workload:
   namespace: istio-system
+  name: httpbin
 
 secretStore:
   name: vault-backend
@@ -7,3 +8,38 @@ secretStore:
 
 applicationsecret:
   key: secret/global
+
+job:
+  image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+
+serviceAccountName: istio-sidecar-injection-sa
+rbac:
+  roles:
+    - name: sidecar-injection
+      createRole: true
+      apiGroups:
+        - '""'
+      scope:
+        cluster: true
+      resources:
+        - nodes
+        - deployments.apps
+      verbs:
+        - "get"
+        - "list"
+        - "patch"
+        - "update"
+  roleBindings:
+    - name: sidecar-injection
+      createBinding: true
+      scope:
+        cluster: true
+        namespace: ""
+      subjects:
+        kind: ServiceAccount
+        name: istio-sidecar-injection-sa
+        namespace: istio-system
+        apiGroup: ""
+      roleRef:
+        kind: ClusterRole
+        name: sidecar-injection

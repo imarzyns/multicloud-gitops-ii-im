@@ -88,8 +88,8 @@ clusterGroup:
       path: charts/all/nfd
 
     istio:
-      name: istio
-      namespace: istio-system
+      name: sailoperator
+      # namespace: istio-system
       project: istio
       path: charts/all/istio
 
