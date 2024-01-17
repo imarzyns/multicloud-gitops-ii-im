@@ -7,8 +7,8 @@ spec:
     meshConfig:
       defaultConfig:
         privateKeyProvider:
-        qat:
-          pollDelay: 5ms
+          qat:
+            pollDelay: 5ms
     sidecarInjectorWebhook:
       templates:
         custom: |

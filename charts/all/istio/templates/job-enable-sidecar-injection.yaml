@@ -14,7 +14,7 @@ spec:
         - /bin/bash
         - -c
         - |
-          oc label namespace {{ .Values.workload.namespace }} istio-injection=enabled --overwrite
+          oc label namespace {{ .Values.workload.namespace }} istio.io/rev=istio-system --overwrite
           oc -n {{ .Values.workload.namespace }} annotate deploy {{ .Values.workload.name }} inject.istio.io/templates='sidecar,custom'
         name: inject-sidecar-proxy
       dnsPolicy: ClusterFirst
