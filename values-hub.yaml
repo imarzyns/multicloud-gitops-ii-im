@@ -31,7 +31,7 @@ clusterGroup:
       channel: 3.0-nightly
       source: community-operators
 
-    qat:
+    intel-device-plugins-operator:
       name: intel-device-plugins-operator
       namespace: openshift-operators
       channel: alpha
@@ -42,7 +42,7 @@ clusterGroup:
     - config-demo
     - hello-world
     - openshift-nfd
-    - openshift-operators
+    - intel-device-plugins-operator
     - istio
 
   applications:
@@ -93,8 +93,8 @@ clusterGroup:
       project: istio
       path: charts/all/istio
 
-    qat:
-      name: qat
+    intel-device-plugins-operator:
+      name: intel-device-plugins-operator
       namespace: openshift-operators
       project: openshift-operators
       path: charts/all/qat
