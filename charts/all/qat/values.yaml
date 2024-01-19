@@ -14,7 +14,7 @@ rbac:
       scope:
         cluster: true
       resources:
-        - MachineConfig
+        - machineconfigs
       verbs:
         - "get"
         - "list"

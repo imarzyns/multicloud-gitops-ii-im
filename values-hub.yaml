@@ -27,12 +27,12 @@ clusterGroup:
 
     istio:
       name: istio
-      namespace: istio-system
+      # namespace: istio-system
       channel: 3.0-nightly
       source: community-operators
 
     qat:
-      name: qat
+      name: intel-device-plugins-operator
       namespace: openshift-operators
       channel: alpha
       source: certified-operators
@@ -88,8 +88,8 @@ clusterGroup:
       path: charts/all/nfd
 
     istio:
-      name: sailoperator
-      # namespace: istio-system
+      name: istio
+      namespace: istio-system
       project: istio
       path: charts/all/istio
 
