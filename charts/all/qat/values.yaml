@@ -1,6 +1,6 @@
 job:
   image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
-  namespace: openshift-operators
+  namespace: inteldeviceplugin
 
 serviceAccountName: mcp-qat-config-sa
 rbac:
@@ -30,7 +30,7 @@ rbac:
       subjects:
         kind: ServiceAccount
         name: mcp-qat-config-sa
-        namespace: openshift-operators
+        namespace: inteldeviceplugin
         apiGroup: ""
       roleRef:
         kind: ClusterRole

@@ -9,7 +9,7 @@ clusterGroup:
     - config-demo
     - hello-world
     - openshift-nfd
-    - openshift-operators
+    - inteldeviceplugin
     - istio-system
 
   subscriptions:
@@ -25,15 +25,21 @@ clusterGroup:
       channel: stable
       source: redhat-operators
 
-    istio:
-      name: istio
+    sailoperator:
+      name: sailoperator
       # namespace: istio-system
+      sourceNamespace: openshift-marketplace
+      startingCSV: sailoperator.v3.0.0-nightly-2024-01-22
+      installPlanApproval: Automatic
       channel: 3.0-nightly
       source: community-operators
 
     intel-device-plugins-operator:
       name: intel-device-plugins-operator
-      namespace: openshift-operators
+      sourceNamespace: openshift-marketplace
+      startingCSV: intel-device-plugins-operator.v0.28.0
+      installPlanApproval: Automatic
+      namespace: inteldeviceplugin
       channel: alpha
       source: certified-operators
 
@@ -42,7 +48,7 @@ clusterGroup:
     - config-demo
     - hello-world
     - openshift-nfd
-    - intel-device-plugins-operator
+    - inteldeviceplugin
     - istio
 
   applications:
@@ -87,16 +93,16 @@ clusterGroup:
       project: openshift-nfd
       path: charts/all/nfd
 
-    istio:
-      name: istio
+    sailoperator:
+      name: sailoperator
       namespace: istio-system
       project: istio
       path: charts/all/istio
 
     intel-device-plugins-operator:
       name: intel-device-plugins-operator
-      namespace: openshift-operators
-      project: openshift-operators
+      namespace: inteldeviceplugin
+      project: inteldeviceplugin
       path: charts/all/qat
 
   imperative:
