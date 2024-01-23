@@ -15,6 +15,7 @@ rbac:
         cluster: true
       resources:
         - machineconfigs
+        - qatdeviceplugins
       verbs:
         - "get"
         - "list"
