@@ -39,7 +39,7 @@ rbac:
       subjects:
         kind: ServiceAccount
         name: istio-sidecar-injection-sa
-        namespace: istio-system
+        namespace: httpbin
         apiGroup: ""
       roleRef:
         kind: ClusterRole

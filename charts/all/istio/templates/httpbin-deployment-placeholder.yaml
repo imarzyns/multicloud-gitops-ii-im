@@ -18,6 +18,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
   name: {{ .Values.workload.name }}
   namespace: {{ .Values.workload.namespace }}
 spec:

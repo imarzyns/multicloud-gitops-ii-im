@@ -9,15 +9,9 @@ spec:
         privateKeyProvider:
           qat:
             pollDelay: 5ms
-    sidecarInjectorWebhook:
-      templates:
-        custom: |
-          spec:
-            containers:
-            - name: istio-proxy
-              securityContext:
-                privileged: true
-                allowPrivilegeEscalation: true
+    global:
+      proxy:
+        privileged: true
   updateStrategy:
     inactiveRevisionDeletionGracePeriodSeconds: 30
     type: InPlace
