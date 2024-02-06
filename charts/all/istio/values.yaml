@@ -12,6 +12,10 @@ applicationsecret:
 job:
   image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
 
+machineconfigName:
+  iommu:
+  fwpath:
+
 serviceAccountName: istio-sidecar-injection-sa
 rbac:
   roles:

@@ -35,8 +35,11 @@ spec:
       containers:
       - name: istio-proxy
         securityContext:
-          privileged: true
-          allowPrivilegeEscalation: true
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
+          capabilities:
+            add:
+              ["IPC_LOCK"]
         image: auto
 ---
 apiVersion: rbac.authorization.k8s.io/v1
