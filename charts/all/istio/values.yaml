@@ -13,8 +13,8 @@ job:
   image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
 
 machineconfigName:
-  iommu:
-  fwpath:
+  iommu: 100-intel-qat-intel-iommu-on
+  fwpath: 100-alternative-fw-path-for-worker-nodes
 
 serviceAccountName: istio-sidecar-injection-sa
 rbac:
@@ -24,11 +24,13 @@ rbac:
       apiGroups:
         - '""'
         - '"apps"'
+        - '"machineconfiguration.openshift.io"'
       scope:
         cluster: true
       resources:
         - namespaces
         - deployments
+        - machineconfigpools
       verbs:
         - "get"
         - "list"

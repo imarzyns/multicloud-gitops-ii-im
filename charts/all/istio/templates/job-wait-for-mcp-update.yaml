@@ -15,7 +15,7 @@ spec:
         - /bin/bash
         - -c
         - |
-           '/tmp/wait-for-mcp.sh'
+           '/tmp/wait-for-mcp.sh' && \
            oc wait mcp/worker --for condition=updated --timeout=2000s
         name: wait-for-mcp-update
         volumeMounts:
