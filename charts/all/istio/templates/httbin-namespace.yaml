@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  annotations:
-    argocd.argoproj.io/hook: PreSync
-  labels:
-    kubernetes.io/metadata.name: httpbin
-    istio.io/rev: istio-system
-  name: httpbin

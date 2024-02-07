@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "3"
   name: job-enable-sidecar-injection
-  namespace: {{ .Values.workload.namespace }}
+  namespace: istio-system
 spec:
   template:
     spec:

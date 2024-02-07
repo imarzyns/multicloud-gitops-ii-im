@@ -4,8 +4,8 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/sync-wave: "-1"
-  name: job-wait-for-mcp-update
-  namespace: istio-system
+  name: job-wait-for-istio
+  namespace: {{ .Values.workload.namespace }}
 spec:
   template:
     spec:
@@ -15,17 +15,17 @@ spec:
         - /bin/bash
         - -c
         - |
-           '/tmp/wait-for-mcp.sh' && \
+           '/tmp/wait-for-istio.sh' && \
            oc wait mcp/worker --for condition=updated --timeout=2000s
-        name: wait-for-mcp-update
+        name: wait-for-istio
         volumeMounts:
-          - mountPath: /tmp/wait-for-mcp.sh
-            name: wait-for-mcp-update
-            subPath: wait-for-mcp.sh
+          - mountPath: /tmp/wait-for-istio.sh
+            name: wait-for-istio
+            subPath: wait-for-istio.sh
       volumes:
-        - name: wait-for-mcp-update
+        - name: wait-for-istio
           configMap:
-            name: wait-for-mcp-update
+            name: wait-for-istio
             defaultMode: 0755
       dnsPolicy: ClusterFirst
       restartPolicy: Never

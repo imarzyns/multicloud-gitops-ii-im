@@ -20,6 +20,8 @@ kind: Deployment
 metadata:
   name: istio-ingressgateway
   namespace: istio-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   selector:
     matchLabels:
