@@ -9,11 +9,11 @@ data:
   wait-for-istio.sh: |
     #!/bin/bash
 
+    workload_ns='{{ .Values.workload.namespace }}'
     waiting_time=10
-    until [[ $(oc get ns default -o jsonpath='{.metadata.labels}') == *"\"istio.io/rev\":\"istio-system\""* ]]
+    
+    until [[ $(oc get ns ${workload_ns} -o jsonpath='{.metadata.labels}') == *"\"istio.io/rev\":\"istio-system\""* ]]
     do
       sleep ${waiting_time}
     done
     sleep ${waiting_time}
-
-  
