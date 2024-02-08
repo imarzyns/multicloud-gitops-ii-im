@@ -31,7 +31,8 @@ clusterGroup:
       # namespace: istio-system
       sourceNamespace: openshift-marketplace
       startingCSV: sailoperator.v3.0.0-nightly-2024-01-22
-      installPlanApproval: Automatic
+      csv: sailoperator.v3.0.0-nightly-2024-01-22
+      installPlanApproval: Manual
       channel: 3.0-nightly
       source: community-operators
 

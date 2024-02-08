@@ -15,8 +15,7 @@ spec:
         - /bin/bash
         - -c
         - |
-           '/tmp/wait-for-istio.sh' && \
-           oc wait mcp/worker --for condition=updated --timeout=2000s
+           '/tmp/wait-for-istio.sh'
         name: wait-for-istio
         volumeMounts:
           - mountPath: /tmp/wait-for-istio.sh

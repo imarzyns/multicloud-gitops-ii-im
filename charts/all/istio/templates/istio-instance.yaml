@@ -12,6 +12,15 @@ spec:
     global:
       proxy:
         privileged: true
+    sidecarInjectorWebhook:
+      templates:
+        custom: |
+          spec:
+            containers:
+            - name: istio-proxy
+              securityContext:
+                privileged: true
+                allowPrivilegeEscalation: true
   updateStrategy:
     inactiveRevisionDeletionGracePeriodSeconds: 30
     type: InPlace

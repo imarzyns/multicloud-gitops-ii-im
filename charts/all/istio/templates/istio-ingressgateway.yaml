@@ -29,7 +29,7 @@ spec:
   template:
     metadata:
       annotations:
-        inject.istio.io/templates: gateway
+        inject.istio.io/templates: gateway,custom
       labels:
         istio: ingressgateway
         sidecar.istio.io/inject: "true"
