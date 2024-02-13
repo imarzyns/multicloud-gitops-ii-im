@@ -25,12 +25,14 @@ rbac:
         - '""'
         - '"apps"'
         - '"machineconfiguration.openshift.io"'
+        - '"rbac.authorization.k8s.io"'
       scope:
         cluster: true
       resources:
         - namespaces
         - deployments
         - machineconfigpools
+        - rolebindings
       verbs:
         - "get"
         - "list"

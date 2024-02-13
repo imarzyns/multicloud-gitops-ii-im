@@ -35,6 +35,7 @@ spec:
         version: v1
       annotations:
         sidecar.istio.io/inject: 'true'
+        inject.istio.io/templates: custom,sidecar
     spec:
       containers:
       - image: docker.io/kong/httpbin

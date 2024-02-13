@@ -9,9 +9,6 @@ spec:
         privateKeyProvider:
           qat:
             pollDelay: 5ms
-    global:
-      proxy:
-        privileged: true
     sidecarInjectorWebhook:
       templates:
         custom: |
@@ -19,8 +16,16 @@ spec:
             containers:
             - name: istio-proxy
               securityContext:
-                privileged: true
-                allowPrivilegeEscalation: true
+                capabilities:
+                  add:
+                    [IPC_LOCK]
+                privileged: false
+                allowPrivilegeEscalation: false
+              resources:
+                limits:
+                  qat.intel.com/cy: 1
+                requests:
+                  qat.intel.com/cy: 1
   updateStrategy:
     inactiveRevisionDeletionGracePeriodSeconds: 30
     type: InPlace
