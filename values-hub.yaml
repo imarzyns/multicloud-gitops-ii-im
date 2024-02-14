@@ -32,7 +32,7 @@ clusterGroup:
       sourceNamespace: openshift-marketplace
       startingCSV: sailoperator.v3.0.0-nightly-2024-01-22
       csv: sailoperator.v3.0.0-nightly-2024-01-22
-      installPlanApproval: Automatic
+      installPlanApproval: Manual
       channel: 3.0-nightly
       source: community-operators
 
