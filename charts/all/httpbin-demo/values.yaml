@@ -13,11 +13,14 @@ rbac:
       apiGroups:
         - '""'
         - '"apps"'
+        - '"rbac.authorization.k8s.io"'
       scope:
         cluster: true
       resources:
         - namespaces
         - deployments
+        - rolebindings
+        - clusterroles
       verbs:
         - "get"
         - "list"

@@ -33,7 +33,9 @@ rbac:
         - deployments
         - machineconfigpools
         - rolebindings
+        - clusterroles
       verbs:
+        - "create"
         - "get"
         - "list"
         - "patch"
