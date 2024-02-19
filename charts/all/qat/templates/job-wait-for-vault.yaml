@@ -20,7 +20,7 @@ spec:
         name: wait-for-vault
         volumeMounts:
           - mountPath: /tmp/wait-for-vault.sh
-            name: wait-for-istio
+            name: wait-for-vault
             subPath: wait-for-vault.sh
       volumes:
         - name: wait-for-vault

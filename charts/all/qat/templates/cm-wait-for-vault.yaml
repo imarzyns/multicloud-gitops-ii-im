@@ -16,4 +16,9 @@ data:
       sleep ${waiting_time}
     done
 
+    until [[ $(oc -n vault get pods vault-0 -o jsonpath='{.metadata.name}') == *"vault-0"* ]]
+    do
+      sleep ${waiting_time}
+    done
+    
     sleep ${waiting_time}
