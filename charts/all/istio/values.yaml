@@ -26,6 +26,7 @@ rbac:
         - '"apps"'
         - '"machineconfiguration.openshift.io"'
         - '"rbac.authorization.k8s.io"'
+        - '"security.openshift.io"'
       scope:
         cluster: true
       resources:
@@ -34,6 +35,7 @@ rbac:
         - machineconfigpools
         - rolebindings
         - clusterroles
+        - securitycontextconstraints
       verbs:
         - "create"
         - "get"
