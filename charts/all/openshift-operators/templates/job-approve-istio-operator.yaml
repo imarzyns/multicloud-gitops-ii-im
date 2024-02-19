@@ -20,7 +20,7 @@ spec:
         name: wait-for-istio-operator
         volumeMounts:
           - mountPath: /tmp/wait-for-istio-operator.sh
-            name: wait-for-istio
+            name: wait-for-istio-operator
             subPath: wait-for-istio-operator.sh
       volumes:
         - name: wait-for-istio-operator
