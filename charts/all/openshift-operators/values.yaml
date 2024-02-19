@@ -1,43 +1,36 @@
 job:
   image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
-  namespace: inteldeviceplugin
 
-serviceAccountName: mcp-qat-config-sa
+serviceAccountName: istio-operator-sa
 rbac:
   roles:
-    - name: qat-config-role
+    - name: istio-operator-role
       createRole: true
       apiGroups:
         - '""'
-        - '"apps"'
-        - '"apiextensions.k8s.io"'
-        - '"machineconfiguration.openshift.io"'
-        - '"deviceplugin.intel.com"'
+        - '"operators.coreos.com"'
+        - '"rbac.authorization.k8s.io"'
       scope:
         cluster: true
       resources:
-        - machineconfigs
-        - qatdeviceplugins
-        - pods
         - namespaces
+        - installplans
       verbs:
         - "get"
         - "list"
         - "patch"
         - "update"
-        - "create"
-        - "watch"
   roleBindings:
-    - name: qat-config-rolebinding
+    - name: istio-operator-role-binding
       createBinding: true
       scope:
         cluster: true
         namespace: ""
       subjects:
         kind: ServiceAccount
-        name: mcp-qat-config-sa
-        namespace: inteldeviceplugin
+        name: istio-operator-sa
+        namespace: openshift-operators
         apiGroup: ""
       roleRef:
         kind: ClusterRole
-        name: qat-config-role
+        name: istio-operator-role
