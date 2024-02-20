@@ -14,6 +14,7 @@ rbac:
         - '""'
         - '"apps"'
         - '"rbac.authorization.k8s.io"'
+        - '"security.openshift.io"'
       scope:
         cluster: true
       resources:
@@ -21,11 +22,13 @@ rbac:
         - deployments
         - rolebindings
         - clusterroles
+        - securitycontextconstraints
       verbs:
         - "get"
         - "list"
         - "patch"
         - "update"
+        - "use"
   roleBindings:
     - name: httpbin-role-binding
       createBinding: true
