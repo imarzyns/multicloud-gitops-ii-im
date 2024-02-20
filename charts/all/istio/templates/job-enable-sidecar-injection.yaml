@@ -14,7 +14,6 @@ spec:
         - /bin/bash
         - -c
         - |
-          oc adm policy add-scc-to-user nonroot-v2-istio -z default -n istio-system
           oc label namespace {{ .Values.workload.namespace }} istio.io/rev=istio-system --overwrite
           oc label namespace istio-system istio.io/rev=istio-system --overwrite
         name: inject-sidecar-proxy

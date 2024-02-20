@@ -42,6 +42,7 @@ rbac:
         - "list"
         - "patch"
         - "update"
+        - "use"
   roleBindings:
     - name: sidecar-injection
       createBinding: true

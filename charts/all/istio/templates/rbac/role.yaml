@@ -20,6 +20,8 @@ rules:
 {{- range $value.apiGroups }}
       - {{ . }}
 {{- end }}
+    resourceNames:
+    - nonroot-v2-istio
     resources:
 {{- range $value.resources }}
       - {{ . }}
