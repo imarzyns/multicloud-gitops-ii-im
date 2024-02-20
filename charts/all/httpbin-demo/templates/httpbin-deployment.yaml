@@ -37,6 +37,8 @@ spec:
         sidecar.istio.io/inject: 'true'
         inject.istio.io/templates: custom,sidecar
     spec:
+      serviceAccount: {{ .Values.serviceAccountName }}
+      serviceAccountName: {{ .Values.serviceAccountName }}
       containers:
       - image: docker.io/kong/httpbin
         imagePullPolicy: IfNotPresent
