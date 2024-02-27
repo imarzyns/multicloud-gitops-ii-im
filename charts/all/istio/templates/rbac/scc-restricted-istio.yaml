@@ -8,25 +8,24 @@ allowPrivilegedContainer: false
 allowedCapabilities:
 - NET_BIND_SERVICE
 apiVersion: security.openshift.io/v1
-defaultAddCapabilities: null
 fsGroup:
-  type: RunAsAny
+  type: MustRunAs
 groups: []
 kind: SecurityContextConstraints
 metadata:
   annotations:
-    argocd.argoproj.io/hook: PreSync
     include.release.openshift.io/ibm-cloud-managed: "true"
     include.release.openshift.io/self-managed-high-availability: "true"
     include.release.openshift.io/single-node-developer: "true"
-    kubernetes.io/description: nonroot provides all features of the restricted SCC
-      but allows users to run with any non-root UID.  The user must specify the UID
-      or it must be specified on the by the manifest of the container runtime. On
-      top of the legacy 'nonroot' SCC, it also requires to drop ALL capabilities and
-      does not allow privilege escalation binaries. It will also default the seccomp
-      profile to runtime/default if unset, otherwise this seccomp profile is required.
-      Modified version adds also capability of IPC_LOCK.
-  name: nonroot-v2-istio
+    kubernetes.io/description: restricted-v2 denies access to all host features and
+      requires pods to be run with a UID, and SELinux context that are allocated to
+      the namespace. This is the most restrictive SCC and it is used by default for
+      authenticated users. On top of the legacy 'restricted' SCC, it also requires
+      to drop ALL capabilities and does not allow privilege escalation binaries. It
+      will also default the seccomp profile to runtime/default if unset, otherwise
+      this seccomp profile is required. Modified version adds also capability of
+      IPC_LOCK.
+  name: restricted-v2-istio
 priority: null
 readOnlyRootFilesystem: false
 allowedCapabilities:
@@ -34,7 +33,7 @@ allowedCapabilities:
 defaultAddCapabilities:
 - IPC_LOCK
 runAsUser:
-  type: MustRunAsNonRoot
+  type: MustRunAsRange
 seLinuxContext:
   type: MustRunAs
 seccompProfiles:

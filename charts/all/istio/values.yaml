@@ -36,6 +36,7 @@ rbac:
         - rolebindings
         - clusterroles
         - securitycontextconstraints
+        - secrets
       verbs:
         - "create"
         - "get"
