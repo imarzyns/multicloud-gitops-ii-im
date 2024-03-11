@@ -17,14 +17,7 @@ metadata:
     include.release.openshift.io/ibm-cloud-managed: "true"
     include.release.openshift.io/self-managed-high-availability: "true"
     include.release.openshift.io/single-node-developer: "true"
-    kubernetes.io/description: restricted-v2 denies access to all host features and
-      requires pods to be run with a UID, and SELinux context that are allocated to
-      the namespace. This is the most restrictive SCC and it is used by default for
-      authenticated users. On top of the legacy 'restricted' SCC, it also requires
-      to drop ALL capabilities and does not allow privilege escalation binaries. It
-      will also default the seccomp profile to runtime/default if unset, otherwise
-      this seccomp profile is required. Modified version adds also capability of
-      IPC_LOCK.
+    kubernetes.io/description: restricted-v2 SCC extended by IPC_LOCK capability.
   name: restricted-v2-istio
 priority: null
 readOnlyRootFilesystem: false
