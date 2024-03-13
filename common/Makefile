@@ -78,6 +78,7 @@ uninstall: ## runs helm uninstall
 
 .PHONY: generate_certs
 generate_certs: ## generate certs and keys required by demo httpbin app
+	ansible-galaxy collection install community.crypto
 	common/scripts/generate_certs.sh $(NAME)
 
 .PHONY: load-secrets
