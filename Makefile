@@ -12,8 +12,7 @@ help:
 	make -f common/Makefile $*
 
 .PHONY: prepare_certs
-prepare_certs: operator-deploy post-install ## prepares certs and keys for httpbin demo app
-	make generate_certs
+prepare_certs: generate_certs ## prepares certs and keys for httpbin demo app
 	@echo "Done"
 
 .PHONY: install
