@@ -14,7 +14,7 @@ spec:
             - /bin/bash
             - -c
             - |
-              oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/device_plugins/qat_device_plugin.yaml
+              oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.2.0/device_plugins/qat_device_plugin.yaml
           imagePullPolicy: IfNotPresent
           name: qat-apply-cr
       restartPolicy: Never
