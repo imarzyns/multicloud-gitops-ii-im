@@ -14,8 +14,8 @@ spec:
             - /bin/bash
             - -c
             - |
-              oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-alternative-fw-path-for-worker-nodes.yaml
-              oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/main/machine_configuration/100-intel-qat-intel-iommu-on.yaml
+              oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.2.0/machine_configuration/100-alternative-fw-path-for-worker-nodes.yaml
+              oc apply -f https://raw.githubusercontent.com/intel/intel-technology-enabling-for-openshift/v1.2.0/machine_configuration/100-intel-qat-intel-iommu-on.yaml
           imagePullPolicy: IfNotPresent
           name: mcp-apply-iommu
       restartPolicy: Never
