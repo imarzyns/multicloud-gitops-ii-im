@@ -11,6 +11,10 @@ help:
 %:
 	make -f common/Makefile $*
 
+.PHONY: prepare_certs
+prepare_certs: generate_certs ## prepares certs and keys for httpbin demo app
+	@echo "Done"
+
 .PHONY: install
 install: operator-deploy post-install ## installs the pattern and loads the secrets
 	@echo "Installed"
