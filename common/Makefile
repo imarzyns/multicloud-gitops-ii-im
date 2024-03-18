@@ -76,11 +76,6 @@ uninstall: ## runs helm uninstall
 	helm uninstall $(NAME)
 	@oc delete csv -n openshift-operators $(CSV)
 
-.PHONY: generate_certs
-generate_certs: ## generate certs and keys required by demo httpbin app
-	ansible-galaxy collection install community.crypto
-	common/scripts/generate_certs.sh $(NAME)
-
 .PHONY: load-secrets
 load-secrets: ## loads the secrets into the backend determined by values-global setting
 	common/scripts/process-secrets.sh $(NAME)
