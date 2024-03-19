@@ -1,0 +1,14 @@
+---
+- name: Generate and push to Vault keys and certificates for httpbin demo application
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    cert_directory_path: "{{ lookup('env', 'HOME') }}/certs"
+    client_cert_key_path: "{{ cert_directory_path }}/example.com"
+    server_cert_key_path: "{{ cert_directory_path }}/httpbin.example.com"
+    app_cert_key_path: "{{ cert_directory_path }}/helloworld.example.com"
+    cli_cert_key_path: "{{ cert_directory_path }}/client.example.com"
+  tasks:
+    - import_playbook: generate-certs.yaml
+    - import_playbook: ../../common/ansible/playbooks/process_secrets/process_secrets.yml
