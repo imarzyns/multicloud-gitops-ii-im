@@ -42,6 +42,6 @@
         cmd: openssl x509 -req -sha256 -days 365 -CA {{ client_cert_key_path + '.crt' }} -CAkey {{ client_cert_key_path + '.key' }} -set_serial 0 -in {{ item + '.csr' }} -out {{ item + '.crt' }}
         creates: "{{ item }}.crt"
       loop:
-        - "{{ server_cert_key_path }}.key"
-        - "{{ app_cert_key_path }}.key"
-        - "{{ cli_cert_key_path }}.key"
+        - "{{ server_cert_key_path }}"
+        - "{{ app_cert_key_path }}"
+        - "{{ cli_cert_key_path }}"
