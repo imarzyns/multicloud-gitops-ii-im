@@ -150,9 +150,9 @@ clusterGroup:
         # per playbook timeout in seconds
         timeout: 234
         # verbosity: "-v"
-      - name: generate-certs
+      - name: generate-and-push
         # ansible playbook to be run
-        playbook: ansible/playbooks/generate-certs.yaml
+        playbook: ansible/playbooks/generate-and-push.yaml
         # per playbook timeout in seconds
         timeout: 234
         # verbosity: "-v"
