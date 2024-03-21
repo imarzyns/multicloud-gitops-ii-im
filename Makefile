@@ -11,13 +11,17 @@ help:
 %:
 	make -f common/Makefile $*
 
+.PHONY: generate-certs
+generate-certs:  ## generate certificates and keys for httpbin demo application
+	ansible-playbook "ansible/playbooks/generate-certs.yaml"
+	@echo "Generated certs and keys"
+
 .PHONY: install
 install: operator-deploy post-install ## installs the pattern and loads the secrets
 	@echo "Installed"
 
 .PHONY: post-install
-post-install: ## Post-install tasks
-	make load-secrets
+post-install: generate-certs load-secrets ## Post-install tasks
 	@echo "Done"
 
 .PHONY: test
