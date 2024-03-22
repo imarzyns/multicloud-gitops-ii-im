@@ -10,10 +10,6 @@
     app_cert_key_path: "{{ cert_directory_path }}/helloworld.example.com"
     cli_cert_key_path: "{{ cert_directory_path }}/client.example.com"
   tasks:
-    - name: Install openssl
-      ansible.builtin.command:
-        cmd: microdnf install openssl
-
     - name: Creates directories for certs and keys
       ansible.builtin.file:
         path: "{{ item }}"
