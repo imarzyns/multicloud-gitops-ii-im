@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: habana-apply-patches
+  namespace: {{ .Values.job.namespace }}
+spec:
+  template:
+    spec:
+      containers:
+        - image: {{ .Values.job.image }}
+          command:
+            - /bin/bash
+            - -c
+            - |
+              oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}' && \
+              oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"managementState":"Managed"}}' --type=merge && \
+              until oc get svc image-registry -n openshift-image-registry; do sleep 10; done && \
+              oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"managementState":"Unmanaged"}}' --type=merge
+          imagePullPolicy: IfNotPresent
+          name: habana-apply-patches
+      restartPolicy: Never
+      serviceAccount: {{ .Values.serviceAccountName }}
+      serviceAccountName: {{ .Values.serviceAccountName }}

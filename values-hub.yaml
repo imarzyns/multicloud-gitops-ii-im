@@ -7,16 +7,42 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
+    - openshift-nfd
+    - openshift-kmm
+    - habana-ai-operator
+
   subscriptions:
     acm:
       name: advanced-cluster-management
       namespace: open-cluster-management
       channel: release-2.10
       #csv: advanced-cluster-management.v2.6.1
+    
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      channel: stable
+      source: redhat-operators
+
+    kmm:
+      name: kmm
+      namespace: openshift-kmm
+      channel: stable
+      source: redhat-operators
+
+    habana-ai:
+      name: habana-ai
+      namespace: habana-ai-operator
+      channel: stable
+      source: certified-operators
+
   projects:
     - hub
     - config-demo
     - hello-world
+    - openshift-nfd
+    - openshift-kmm
+    - habana-ai-operator
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
@@ -68,6 +94,22 @@ clusterGroup:
       namespace: hello-world
       project: hello-world
       path: charts/all/hello-world
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      project: openshift-nfd
+      path: charts/all/nfd
+    kmm:
+      name: kmm
+      namespace: openshift-kmm
+      project: openshift-kmm
+      path: charts/all/kmm
+    habana-ai:
+      name: habana-ai
+      namespace: habana-ai-operator
+      project: habana-ai-operator
+      path: charts/all/habana-ai
+
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule

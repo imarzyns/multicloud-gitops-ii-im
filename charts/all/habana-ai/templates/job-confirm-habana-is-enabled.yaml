@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  name: confirm-habana-is-enabled
+spec:
+  template:
+    spec:
+      containers:
+        - image: {{ .Values.config.driver.image }}
+          command:
+            - /bin/bash
+            - -c
+            - |
+               hl-smi -Q memory.total -f csv
+          imagePullPolicy: IfNotPresent
+          name: confirm-habana-is-enabled
+      restartPolicy: Never
+      serviceAccount: {{ .Values.serviceAccountName }}
+      serviceAccountName: {{ .Values.serviceAccountName }}
