@@ -10,6 +10,9 @@ clusterGroup:
     - openshift-nfd
     - openshift-kmm
     - habana-ai-operator
+    - redhat-ods-operator:
+        operatorGroup: true
+        targetNamespaces: ""
 
   subscriptions:
     acm:
@@ -36,6 +39,13 @@ clusterGroup:
       channel: stable
       source: certified-operators
 
+    rhods:
+      name: rhods-operator
+      namespace: redhat-ods-operator
+      source: redhat-operators
+      sourceNamespace: openshift-marketplace
+      channel: stable
+
   projects:
     - hub
     - config-demo
@@ -43,6 +53,7 @@ clusterGroup:
     - openshift-nfd
     - openshift-kmm
     - habana-ai-operator
+    - redhat-ods-operator
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
@@ -109,6 +120,11 @@ clusterGroup:
       namespace: habana-ai-operator
       project: habana-ai-operator
       path: charts/all/habana-ai
+    rhods-operator:
+      name: rhods-operator
+      namespace: redhat-ods-operator
+      project: redhat-ods-operator
+      path: charts/all/rhods-operator
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
