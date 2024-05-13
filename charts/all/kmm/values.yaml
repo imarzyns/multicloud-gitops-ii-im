@@ -2,6 +2,9 @@ job:
   image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
   namespace: openshift-kmm
 
+kubeletconfig:
+  podPidsLimit: 65536
+
 serviceAccountName: mcp-kmm-config-sa
 rbac:
   roles:
