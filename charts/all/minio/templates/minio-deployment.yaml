@@ -48,12 +48,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: minio-secret
-                  key: minio_root_user
+                  key: minio-root-user
             - name: MINIO_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: minio-secret
-                  key: minio_root_password
+                  key: minio-root-password
           ports:
             - containerPort: 9000
               protocol: TCP
