@@ -40,7 +40,7 @@ objects:
         valueFrom:
           secretKeyRef:
             key: HUGGING_FACE_HUB_TOKEN
-            name: hf-secret
+            name: hf-token-secret
       - name: PT_HPU_ENABLE_LAZY_COLLECTIVES
         value: "true"
       - name: BATCH_BUCKET_SIZE
