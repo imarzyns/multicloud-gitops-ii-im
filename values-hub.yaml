@@ -3,13 +3,13 @@ clusterGroup:
   isHubCluster: true
   namespaces:
     - open-cluster-management
+    - openshift-storage
     - vault
     - golang-external-secrets
     - config-demo
     - hello-world
     - openshift-nfd
     - habana-ai-operator
-    - minio
     - openshift-kmm
         operatorGroup: true
         targetNamespaces: ""
@@ -36,12 +36,6 @@ clusterGroup:
       channel: stable
       source: redhat-operators
 
-    minio:
-      name: minio
-      namespace: minio-operator
-      channel: stable
-      source: certified-operators
-
     habana-ai:
       name: habana-ai
       namespace: habana-ai-operator
@@ -61,7 +55,6 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - openshift-kmm
-    - minio-operator
     - habana-ai-operator
     - redhat-ods-operator
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
@@ -125,11 +118,11 @@ clusterGroup:
       namespace: openshift-kmm
       project: openshift-kmm
       path: charts/all/kmm
-    minio:
-      name: minio
-      namespace: minio-operator
-      project: minio-operator
-      path: charts/all/minio
+    openshift-data-foundations:
+      name: odf
+      namespace: openshift-storage
+      project: hub
+      path: charts/all/openshift-data-foundations
     habana-ai:
       name: habana-ai
       namespace: habana-ai-operator

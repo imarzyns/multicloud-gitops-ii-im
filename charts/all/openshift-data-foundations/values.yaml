@@ -1,0 +1,22 @@
+odf:
+  namespace: openshift-storage
+  storageClass:
+    name: ocs-storagecluster-ceph-rgw
+    objectStoreName: ocs-storagecluster-cephobjectstore
+
+route:
+  name: s3-rgw
+  service:
+    name: rook-ceph-rgw-ocs-storagecluster-cephobjectstore
+    weight: 100
+  port:
+    targetPort: http
+
+job:
+  image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+
+global:
+  namespace: gaudi-pattern
+
+serviceAccount:
+  name: "gaudi-pattern-sa"
