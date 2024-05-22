@@ -12,10 +12,10 @@ clusterGroup:
     - habana-ai-operator
     - openshift-kmm:
         operatorGroup: true
-        targetNamespaces: ""
+        targetNamespaces: 
     - redhat-ods-operator:
         operatorGroup: true
-        targetNamespaces: ""
+        targetNamespaces: 
 
   subscriptions:
     acm:
