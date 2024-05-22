@@ -10,7 +10,7 @@ clusterGroup:
     - hello-world
     - openshift-nfd
     - habana-ai-operator
-    - openshift-kmm
+    - openshift-kmm:
         operatorGroup: true
         targetNamespaces: ""
     - redhat-ods-operator:
