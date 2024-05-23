@@ -1,0 +1,10 @@
+global: 
+  pattern: gaudillm
+
+  gaudillm:
+    namespace: gaudi-llm
+    build_envs: [] # http_proxy/https_prxy can be set here 
+    runtime_envs: []
+    
+    retriever:
+      image: gen-ai-comps:retriever-redis-server 

@@ -1,0 +1,13 @@
+global: 
+  pattern: gaudillm
+
+  gaudillm:
+    namespace: gaudi-llm
+    build_envs: [] # http_proxy/https_prxy can be set here
+    runtime_envs: []
+
+    tei_embedding:
+      image: gen-ai-comps:tei-gaudi
+      pvc:
+        size: 3Gi
+      model_id: BAAI/bge-large-en-v1.5

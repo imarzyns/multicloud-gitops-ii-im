@@ -1,0 +1,8 @@
+global:
+  pattern: gaudillm
+
+  clusterDomain: lab.com
+  clusterName: ocp
+
+  gaudillm:
+    namespace: gaudi-llm

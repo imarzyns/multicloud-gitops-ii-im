@@ -16,6 +16,7 @@ clusterGroup:
     - redhat-ods-operator:
         operatorGroup: true
         targetNamespaces: 
+    - gaudi-llm
 
   subscriptions:
     acm:
@@ -57,6 +58,7 @@ clusterGroup:
     - openshift-kmm
     - habana-ai-operator
     - redhat-ods-operator
+    - gaudi-llm
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
@@ -133,6 +135,56 @@ clusterGroup:
       namespace: redhat-ods-operator
       project: redhat-ods-operator
       path: charts/all/rhods-operator
+    tei_xeon_service:
+      name: tei_xeon_service
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/tei_xeon_service
+    tei_embedding_service:
+      name: tei_embedding_service
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/tei_embedding_service
+    retriever:
+      name: retriever
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/retriever
+    reranking:
+      name: reranking
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/reranking
+    redis_vector_db:
+      name: redis_vector_db
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/redis_vector_db
+    llm_server_for_gaudi:
+      name: llm_server_for_gaudi
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/llm_server_for_gaudi
+    gaudillm_init:
+      name: gaudillm_init
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/gaudillm_init
+    embedding:
+      name: embedding
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/embedding
+    chatqna_ui_server:
+      name: chatqna_ui_server
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/chatqna_ui_server
+    chatqna_gaudi_backend:
+      name: chatqna_gaudi_backend
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/chatqna_gaudi_backend
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
