@@ -18,5 +18,40 @@ job:
 global:
   namespace: gaudi-pattern
 
-serviceAccount:
-  name: "gaudi-pattern-sa"
+serviceAccountName: gaudi-pattern-sa
+rbac:
+  roles:
+    - name: gaudi-pattern-role
+      createRole: true
+      apiGroups:
+        - '""'
+        - '"apps"'
+        - '"machineconfiguration.openshift.io"'
+        - '"rbac.authorization.k8s.io"'
+        - '"security.openshift.io"'
+      scope:
+        cluster: true
+      resources:
+        - namespaces
+        - secrets
+      verbs:
+        - "create"
+        - "get"
+        - "list"
+        - "patch"
+        - "update"
+        - "use"
+  roleBindings:
+    - name: gaudi-pattern-rolebind
+      createBinding: true
+      scope:
+        cluster: true
+        namespace: ""
+      subjects:
+        kind: ServiceAccount
+        name: gaudi-pattern-sa
+        namespace: gaudi-pattern
+        apiGroup: ""
+      roleRef:
+        kind: ClusterRole
+        name: gaudi-pattern-role

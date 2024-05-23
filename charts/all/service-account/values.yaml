@@ -1,5 +1,0 @@
-global:
-  namespace: gaudi-pattern
-
-serviceAccount:
-  name: "gaudi-pattern-sa"
