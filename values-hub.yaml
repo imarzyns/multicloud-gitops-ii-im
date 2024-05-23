@@ -32,13 +32,13 @@ clusterGroup:
       source: redhat-operators
 
     kmm:
-      name: kmm
+      name: kernel-module-management
       namespace: openshift-kmm
       channel: stable
       source: redhat-operators
 
     habana-ai:
-      name: habana-ai
+      name: habana-ai-operator
       namespace: habana-ai-operator
       channel: stable
       source: certified-operators
@@ -135,16 +135,16 @@ clusterGroup:
       namespace: redhat-ods-operator
       project: redhat-ods-operator
       path: charts/all/rhods-operator
-    tei_xeon_service:
-      name: tei_xeon_service
+    tei-xeon-service:
+      name: tei-xeon-service
       namespace: gaudi-llm
       project: gaudi-llm
-      path: charts/all/tei_xeon_service
-    tei_embedding_service:
-      name: tei_embedding_service
+      path: charts/all/tei-xeon-service
+    tei-embedding-service:
+      name: tei-embedding-service
       namespace: gaudi-llm
       project: gaudi-llm
-      path: charts/all/tei_embedding_service
+      path: charts/all/tei-embedding-service
     retriever:
       name: retriever
       namespace: gaudi-llm
@@ -155,36 +155,36 @@ clusterGroup:
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/reranking
-    redis_vector_db:
-      name: redis_vector_db
+    redis-vector-db:
+      name: redis-vector-db
       namespace: gaudi-llm
       project: gaudi-llm
-      path: charts/all/redis_vector_db
-    llm_server_for_gaudi:
-      name: llm_server_for_gaudi
+      path: charts/all/redis-vector-db
+    llm-server-for-gaudi:
+      name: llm-server-for-gaudi
       namespace: gaudi-llm
       project: gaudi-llm
-      path: charts/all/llm_server_for_gaudi
-    gaudillm_init:
-      name: gaudillm_init
+      path: charts/all/llm-server-for-gaudi
+    gaudillm-init:
+      name: gaudillm-init
       namespace: gaudi-llm
       project: gaudi-llm
-      path: charts/all/gaudillm_init
+      path: charts/all/gaudillm-init
     embedding:
       name: embedding
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/embedding
-    chatqna_ui_server:
-      name: chatqna_ui_server
+    chatqna-ui-server:
+      name: chatqna-ui-server
       namespace: gaudi-llm
       project: gaudi-llm
-      path: charts/all/chatqna_ui_server
-    chatqna_gaudi_backend:
-      name: chatqna_gaudi_backend
+      path: charts/all/chatqna-ui-server
+    chatqna-gaudi-backend:
+      name: chatqna-gaudi-backend
       namespace: gaudi-llm
       project: gaudi-llm
-      path: charts/all/chatqna_gaudi_backend
+      path: charts/all/chatqna-gaudi-backend
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
