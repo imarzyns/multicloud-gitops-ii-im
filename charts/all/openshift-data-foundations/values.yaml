@@ -50,7 +50,7 @@ rbac:
       subjects:
         kind: ServiceAccount
         name: gaudi-pattern-sa
-        namespace: gaudi-pattern
+        namespace: openshift-storage
         apiGroup: ""
       roleRef:
         kind: ClusterRole
