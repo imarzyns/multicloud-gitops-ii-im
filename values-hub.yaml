@@ -133,6 +133,11 @@ clusterGroup:
       namespace: redhat-ods-operator
       project: redhat-ods-operator
       path: charts/all/rhods-operator
+    service-account:
+      name: gaudi-service-account
+      namespace: openshift-storage
+      project: openshift-storage
+      path: charts/all/service-account
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
