@@ -32,7 +32,7 @@ spec:
           - |
             cp /usr/lib/ssl/cert.pem /tmp/bundle.crt && \
             cat /rhoai-ca/tls.crt  | tee -a '/tmp/bundle.crt' && \
-            python llm_tgi.py
+            python llm.py
           env:
             - name: HOME
               value: /tmp/temp-data

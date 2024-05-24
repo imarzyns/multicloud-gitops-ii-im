@@ -10,4 +10,5 @@ global:
     runtime_envs: []
     
     chatqna_gaudi_backend: 
+      git_ref: a6b3caf
       image: gen-ai-comps:chatqna-megaservice-server 

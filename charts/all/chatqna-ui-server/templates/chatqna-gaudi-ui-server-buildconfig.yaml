@@ -17,6 +17,7 @@ spec:
   source:
     contextDir: ChatQnA/ui
     git:
+      ref: {{ .Values.global.gaudillm.chatqna_ui_server.git_ref }}
       uri: https://github.com/opea-project/GenAIExamples.git
     type: Git
   strategy:

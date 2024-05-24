@@ -17,12 +17,13 @@ spec:
   source:
     contextDir: .
     git:
+      ref: {{ .Values.global.gaudillm.llm_server_for_gaudi.git_ref }}
       uri: https://github.com/opea-project/GenAIComps.git
     type: Git
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: comps/llms/langchain/docker/Dockerfile
+      dockerfilePath: comps/llms/text-generation/tgi/Dockerfile
       {{- if .Values.global.gaudillm.build_envs }}
       env:
       {{- range .Values.global.gaudillm.build_envs }}
