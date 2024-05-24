@@ -37,6 +37,7 @@ rbac:
         - "patch"
         - "update"
         - "use"
+        - "watch"
   roleBindings:
     - name: gaudi-pattern-rhoai-rolebind
       createBinding: true
