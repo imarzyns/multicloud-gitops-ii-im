@@ -4,7 +4,7 @@ metadata:
   labels:
     io.kompose.service: chatqna-gaudi-ui-server
   name: chatqna-gaudi-ui-server
-  namespace: gaudi-llm2
+  namespace: {{ .Values.global.gaudillm.namespace }}
 spec:
   host: chatqna-gaudi-ui-server-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterName }}.{{ .Values.global.clusterDomain }}
   port:
