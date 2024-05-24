@@ -29,6 +29,7 @@ rbac:
       resources:
         - namespaces
         - secrets
+        - datascienceclusters
       verbs:
         - "create"
         - "get"
