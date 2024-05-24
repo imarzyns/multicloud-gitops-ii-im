@@ -50,6 +50,18 @@ clusterGroup:
       sourceNamespace: openshift-marketplace
       channel: stable
 
+    rhsm:
+      name: servicemeshoperator
+      namespace: openshift-operators
+      source: redhat-operators
+      channel: stable
+
+    rhs:
+      name: serverless-operator
+      namespace: openshift-operators
+      source: redhat-operators
+      channel: stable
+
   projects:
     - hub
     - config-demo
