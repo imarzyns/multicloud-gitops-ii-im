@@ -15,7 +15,7 @@ serviceAccountName: gaudi-pattern-sa
 
 rbac:
   roles:
-    - name: gaudi-pattern-role
+    - name: gaudi-pattern-rhoai-role
       createRole: true
       apiGroups:
         - '""'
@@ -23,6 +23,7 @@ rbac:
         - '"machineconfiguration.openshift.io"'
         - '"rbac.authorization.k8s.io"'
         - '"security.openshift.io"'
+        - '"datasciencecluster.opendatahub.io"'
       scope:
         cluster: true
       resources:
@@ -36,7 +37,7 @@ rbac:
         - "update"
         - "use"
   roleBindings:
-    - name: gaudi-pattern-rolebind
+    - name: gaudi-pattern-rhoai-rolebind
       createBinding: true
       scope:
         cluster: true
@@ -48,4 +49,4 @@ rbac:
         apiGroup: ""
       roleRef:
         kind: ClusterRole
-        name: gaudi-pattern-role  
+        name: gaudi-pattern-rhoai-role  
