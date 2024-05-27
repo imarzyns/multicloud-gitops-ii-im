@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubeletconfig-pidlimit-apply
+  namespace: {{ .Values.global.gaudillm.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+data:
+  kubeletconfig-pidlimit-apply.sh: |
+    #!/bin/bash
+    oc label mcp/master custom-kubelet=set-pod-pid-limit-kubelet
+    oc label mcp/worker custom-kubelet=set-pod-pid-limit-kubelet

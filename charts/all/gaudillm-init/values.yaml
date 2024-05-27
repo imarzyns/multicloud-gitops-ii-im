@@ -38,6 +38,18 @@ rbac:
         - "update"
         - "use"
         - "watch"
+    - name: gaudi-pattern-rhoai-role-mcp-label
+      createRole: true
+      apiGroups:
+        - '"machineconfiguration.openshift.io"'
+      scope:
+        cluster: true
+      resources:
+        - machineconfigpools
+      verbs:
+        - "get"
+        - "list"
+        - "patch"
   roleBindings:
     - name: gaudi-pattern-rhoai-rolebind
       createBinding: true
@@ -52,3 +64,16 @@ rbac:
       roleRef:
         kind: ClusterRole
         name: gaudi-pattern-rhoai-role  
+    - name: gaudi-pattern-rhoai-role-mcp-label
+      createBinding: true
+      scope:
+        cluster: true
+        namespace: ""
+      subjects:
+        kind: ServiceAccount
+        name: gaudi-pattern-sa
+        namespace: gaudi-llm 
+        apiGroup: ""
+      roleRef:
+        kind: ClusterRole
+        name: gaudi-pattern-rhoai-role-mcp-label
