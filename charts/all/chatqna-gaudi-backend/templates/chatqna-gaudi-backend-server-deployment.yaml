@@ -46,4 +46,12 @@ spec:
           ports:
             - containerPort: 8888
               protocol: TCP
+        volumeMounts:
+          - mountPath: chatqna.yaml
+            name: megaservice-config
       restartPolicy: Always
+      volumes:
+        - name: megaservice-config 
+          configMap:
+            name: megaservice-config
+            defaultMode: 0755
