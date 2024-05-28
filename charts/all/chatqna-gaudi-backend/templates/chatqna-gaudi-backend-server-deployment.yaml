@@ -47,7 +47,7 @@ spec:
             - containerPort: 8888
               protocol: TCP
           volumeMounts:
-            - mountPath: /
+            - mountPath: /home/user/
               name: megaservice-config
               subPath: megaservice-config.yaml
       restartPolicy: Always
