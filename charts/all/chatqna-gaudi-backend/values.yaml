@@ -2,7 +2,6 @@ global:
   pattern: gaudillm
 
   clusterDomain: igk.internal
-  clusterName: rose
 
   gaudillm:
     namespace: gaudi-llm

@@ -42,7 +42,7 @@ spec:
             - name: HOME
               value: /tmp/temp-data
             - name: CHAT_BASE_URL
-              value: http://megaservice-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterName }}.{{ .Values.global.clusterDomain }}/v1/chatqna
+              value: http://megaservice-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterDomain }}/v1/chatqna
             {{- if .Values.global.gaudillm.runtime_envs }}
             {{- range .Values.global.gaudillm.runtime_envs }}
             - name: {{ .name }}

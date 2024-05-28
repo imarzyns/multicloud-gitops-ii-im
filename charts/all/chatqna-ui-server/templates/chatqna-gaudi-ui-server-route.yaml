@@ -6,7 +6,7 @@ metadata:
   name: chatqna-gaudi-ui-server
   namespace: {{ .Values.global.gaudillm.namespace }}
 spec:
-  host: chatqna-gaudi-ui-server-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterName }}.{{ .Values.global.clusterDomain }}
+  host: chatqna-gaudi-ui-server-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterDomain }}
   port:
     targetPort: 5173
   to:

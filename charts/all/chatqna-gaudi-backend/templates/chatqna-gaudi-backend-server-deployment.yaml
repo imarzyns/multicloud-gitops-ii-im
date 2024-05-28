@@ -39,7 +39,7 @@ spec:
             python /tmp/chatqna.py
           env:
             - name: MEGA_SERVICE_HOST_IP
-              value: megaservice-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterName }}.{{ .Values.global.clusterDomain }}
+              value: megaservice-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterDomain }}
             {{- if .Values.global.gaudillm.runtime_envs }}
             {{- range .Values.global.gaudillm.runtime_envs }}
             - name: {{ .name }}

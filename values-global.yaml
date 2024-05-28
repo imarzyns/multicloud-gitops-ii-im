@@ -7,7 +7,6 @@ global:
     installPlanApproval: Automatic
 
   clusterDomain: igk.internal
-  clusterName: rose
 
   gaudillm:
     namespace: gaudi-llm
