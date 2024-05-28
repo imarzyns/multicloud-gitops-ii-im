@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.33.0 (3ce457399)
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-wave: "5"
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"gen-ai-comps:chatqna-ui-server"},"fieldPath":"spec.template.spec.containers[?(@.name==\"chatqna-gaudi-ui-server\")].image"},{"from":{"kind":"ImageStreamTag","name":"gen-ai-comps:chatqna-ui-server"},"fieldPath":"spec.template.spec.containers[?(@.name==\"copy-ui-to-workdir\")].image"}]'
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"chatqna-ui:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"chatqna-gaudi-ui-server\")].image"},{"from":{"kind":"ImageStreamTag","name":"chatqna-ui:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"copy-ui-to-workdir\")].image"}]'
   labels:
     io.kompose.service: chatqna-gaudi-ui-server
   name: chatqna-gaudi-ui-server

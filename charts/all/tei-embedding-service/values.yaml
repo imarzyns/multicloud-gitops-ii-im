@@ -7,7 +7,7 @@ global:
     runtime_envs: []
 
     tei_embedding:
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen-ai-comps:tei-gaudi
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/tei-gaudi:latest
       pvc:
         size: 3Gi
       model_id: BAAI/bge-large-en-v1.5

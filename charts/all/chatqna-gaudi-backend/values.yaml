@@ -9,5 +9,5 @@ global:
     runtime_envs: []
     
     chatqna_gaudi_backend: 
-      git_ref: 53de829
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen-ai-comps:chatqna-megaservice-server 
+      git_ref: 3f26d06
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/chatqna:latest
