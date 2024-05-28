@@ -35,6 +35,7 @@ spec:
             sed -i "s/7000/80/" /tmp/chatqna.py && \
             sed -i "s/8000/80/" /tmp/chatqna.py && \
             sed -i "s/9000/80/" /tmp/chatqna.py && \
+            ls /tmp && \
             python /tmp/chatqna.py
           env:
             - name: MEGA_SERVICE_HOST_IP
