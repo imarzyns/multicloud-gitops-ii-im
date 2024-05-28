@@ -54,7 +54,7 @@ spec:
           ports:
             - containerPort: 5173
               protocol: TCP
-          workingDir: /tmp/temp-data/svelte
+          workingDir: /tmp/temp-data/GenAIExamples/ChatQnA/ui/svelte # use workingDir from commit ff5dff7 when updating to newer
           volumeMounts:
             - name: temp-data
               mountPath: /tmp/temp-data
