@@ -13,22 +13,22 @@ global:
       image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/chatqna:latest
       megaservice_envs:
         - name: MEGA_SERVICE_HOST_IP 
-          value: "0.0.0.0"
+          value: '"0.0.0.0"'
         - name: MEGA_SERVICE_PORT 
-          value: "8888"
+          value: '"8888"'
         - name: EMBEDDING_SERVICE_HOST_IP
           value: embedding
         - name: EMBEDDING_SERVICE_PORT
-          value: "6000"
+          value: '"6000"'
         - name: RETRIEVER_SERVICE_HOST_IP 
           value: retriever
         - name: RETRIEVER_SERVICE_PORT 
-          value: "7000"
+          value: '"7000"'
         - name: RERANK_SERVICE_HOST_IP 
           value: reranking
         - name: RERANK_SERVICE_PORT
-          value: "8000"
+          value: '"8000"'
         - name: LLM_SERVICE_HOST_IP 
           value: llm
         - name: LLM_SERVICE_PORT 
-          value: "9000"
+          value: '"9000"'
