@@ -26,18 +26,7 @@ spec:
         io.kompose.service: chatqna-gaudi-backend-server
     spec:
       containers:
-        - command:
-          - /bin/bash
-          - -c
-          - |
-            cp chatqna.py /tmp/chatqna.py && \
-            sed -i "s/6000/80/" /tmp/chatqna.py && \
-            sed -i "s/7000/80/" /tmp/chatqna.py && \
-            sed -i "s/8000/80/" /tmp/chatqna.py && \
-            sed -i "s/9000/80/" /tmp/chatqna.py && \
-            ls /tmp && \
-            python /tmp/chatqna.py
-          env:
+        - env:
             - name: MEGA_SERVICE_HOST_IP
               value: megaservice-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterDomain }}
             {{- if .Values.global.gaudillm.runtime_envs }}
@@ -45,7 +34,13 @@ spec:
             - name: {{ .name }}
               value: {{ .value }}
             {{- end }}
+            {{- end }}           
+            {{- if .Values.global.gaudillm.chatqna_gaudi_backend.megaservice_envs }}
+            {{- range .Values.global.gaudillm.chatqna_gaudi_backend.megaservice_envs }}
+            - name: {{ .name }}
+              value: {{ .value }}
             {{- end }}
+            {{- end }}           
           image: {{ .Values.global.gaudillm.chatqna_gaudi_backend.image }}
           name: chatqna-gaudi-backend-server
           ports:

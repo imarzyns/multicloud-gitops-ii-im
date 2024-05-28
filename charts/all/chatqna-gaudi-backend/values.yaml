@@ -11,3 +11,14 @@ global:
     chatqna_gaudi_backend: 
       git_ref: 3f26d06
       image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/chatqna:latest
+      megaservice_envs:
+        MEGA_SERVICE_HOST_IP: "0.0.0.0"
+        MEGA_SERVICE_PORT: "8888"
+        EMBEDDING_SERVICE_HOST_IP: embedding
+        EMBEDDING_SERVICE_PORT: "6000"
+        RETRIEVER_SERVICE_HOST_IP: retriever
+        RETRIEVER_SERVICE_PORT: "7000"
+        RERANK_SERVICE_HOST_IP: reranking
+        RERANK_SERVICE_PORT: "8000"
+        LLM_SERVICE_HOST_IP: llm
+        LLM_SERVICE_PORT: "9000"
