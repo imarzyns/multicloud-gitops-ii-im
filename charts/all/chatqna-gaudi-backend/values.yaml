@@ -12,10 +12,6 @@ global:
       git_ref: 3f26d06
       image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/chatqna:latest
       megaservice_envs:
-        - name: MEGA_SERVICE_HOST_IP 
-          value: '"0.0.0.0"'
-        - name: MEGA_SERVICE_PORT 
-          value: '"8888"'
         - name: EMBEDDING_SERVICE_HOST_IP
           value: embedding
         - name: EMBEDDING_SERVICE_PORT
