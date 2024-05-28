@@ -5,6 +5,56 @@ global:
     useCSV: false
     syncPolicy: Automatic
     installPlanApproval: Automatic
+
+  clusterDomain: igk.internal
+  clusterName: rose
+
+  gaudillm:
+    namespace: gaudi-llm
+    build_envs: [] 
+#    - name: http_proxy
+#      value: http://http_proxy.com:911
+#    - name: https_proxy
+#      value: http://http_proxy.com:911
+    runtime_envs: []
+#    - name: http_proxy
+#      value: http://http_proxy.com:911
+#    - name: https_proxy
+#      value: http://http_proxy.com:911
+    
+    tei_embedding:
+      image: gen-ai-comps:tei-gaudi
+      model_id: BAAI/bge-large-en-v1.5 # change to set custom TEI embedding model
+#   uncomment to customize PVC size if using TEI models bigger thanBAAI/bge-large-en-v1.5
+#      pvc:i
+#        size: 10Gi
+    tei_xeon:
+      image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.2
+      model_id: BAAI/bge-reranker-large # change to set custom TEI reranker model on CPU
+#      pvc:
+#        size: 10Gi
+#    TODO: IMPLEMENT CUSTOMIZING TGI ENDPOINT FROM RHOAI
+
+    servingRuntime:
+      namespace: rag-demo
+      name: tgi-70b-1
+
+    chatqna_gaudi_backend: 
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen-ai-comps:chatqna_megaservice_server 
+    chatqna_ui_server:  
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:chatqna_ui_server
+    embedding:  
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:embedding_tei_server
+    gaudillm_init: {}
+    llm_server_for_gaudi:  
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:llm_tgi_gaudi_server
+    redis_vector_db:  
+      image: redis/redis-stack:7.2.0-v9
+    reranking:  
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:reranking_tei_server
+    retriever:
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:retriever_redis_server
+  
 main:
   clusterGroupName: hub
   multiSourceConfig:
