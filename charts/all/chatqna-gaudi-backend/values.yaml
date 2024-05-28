@@ -12,13 +12,23 @@ global:
       git_ref: 3f26d06
       image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/chatqna:latest
       megaservice_envs:
-        MEGA_SERVICE_HOST_IP: "0.0.0.0"
-        MEGA_SERVICE_PORT: "8888"
-        EMBEDDING_SERVICE_HOST_IP: embedding
-        EMBEDDING_SERVICE_PORT: "6000"
-        RETRIEVER_SERVICE_HOST_IP: retriever
-        RETRIEVER_SERVICE_PORT: "7000"
-        RERANK_SERVICE_HOST_IP: reranking
-        RERANK_SERVICE_PORT: "8000"
-        LLM_SERVICE_HOST_IP: llm
-        LLM_SERVICE_PORT: "9000"
+        - name: MEGA_SERVICE_HOST_IP 
+          value: "0.0.0.0"
+        - name: MEGA_SERVICE_PORT 
+          value: "8888"
+        - name: EMBEDDING_SERVICE_HOST_IP
+          value: embedding
+        - name: EMBEDDING_SERVICE_PORT
+          value: "6000"
+        - name: RETRIEVER_SERVICE_HOST_IP 
+          value: retriever
+        - name: RETRIEVER_SERVICE_PORT 
+          value: "7000"
+        - name: RERANK_SERVICE_HOST_IP 
+          value: reranking
+        - name: RERANK_SERVICE_PORT
+          value: "8000"
+        - name: LLM_SERVICE_HOST_IP 
+          value: llm
+        - name: LLM_SERVICE_PORT 
+          value: "9000"
