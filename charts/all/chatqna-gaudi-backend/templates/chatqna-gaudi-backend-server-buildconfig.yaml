@@ -17,7 +17,7 @@ spec:
   resources: {}
   runPolicy: SerialLatestOnly
   source:
-    contextDir: ChatQnA
+    contextDir: ChatQnA/microservice/gaudi
     git:
       ref: {{ .Values.global.gaudillm.chatqna_gaudi_backend.git_ref }}
       uri: https://github.com/opea-project/GenAIExamples.git
@@ -25,7 +25,7 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: Dockerfile
+      dockerfilePath: docker/Dockerfile
       {{- if .Values.global.gaudillm.build_envs }}
       env:
       {{- range .Values.global.gaudillm.build_envs }}
