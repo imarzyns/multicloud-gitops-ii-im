@@ -39,7 +39,7 @@ objects:
       - name: HUGGING_FACE_HUB_TOKEN
         valueFrom:
           secretKeyRef:
-            key: HUGGING_FACE_HUB_TOKEN
+            key: huggingface
             name: hf-token-secret
       - name: PT_HPU_ENABLE_LAZY_COLLECTIVES
         value: "true"

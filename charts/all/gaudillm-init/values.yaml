@@ -11,6 +11,13 @@ job:
   
 serviceAccountName: gaudi-pattern-sa
 
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+
+hftokensecret:
+  key: secret/global/huggingface
+
 rbac:
   roles:
     - name: gaudi-pattern-rhoai-role

@@ -41,8 +41,8 @@ spec:
             - name: HUGGINGFACEHUB_API_TOKEN
               valueFrom:
                 secretKeyRef:
-                  key: HUGGINGFACE_HUB_TOKEN
-                  name: hf-token
+                  key: huggingface
+                  name: hf-token-secret
             - name: SSL_CERT_FILE
               value: /tmp/bundle.crt
             - name: TGI_LLM_ENDPOINT
