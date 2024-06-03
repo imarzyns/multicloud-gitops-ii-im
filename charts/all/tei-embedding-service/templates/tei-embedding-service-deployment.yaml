@@ -4,7 +4,7 @@ metadata:
   annotations:
     kompose.cmd: kompose convert -f docker_compose.yaml
     kompose.version: 1.33.0 (3ce457399)
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"gen-ai-comps:tei-gaudi"},"fieldPath":"spec.template.spec.containers[?(@.name==\"tei-embedding-gaudi-server\")].image"}]'
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"tei-gaudi:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"tei-embedding-gaudi-server\")].image"}]'
   labels:
     io.kompose.service: tei-embedding-service
   name: tei-embedding-service

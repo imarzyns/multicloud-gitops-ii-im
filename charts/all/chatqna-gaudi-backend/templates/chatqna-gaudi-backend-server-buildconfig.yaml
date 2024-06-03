@@ -9,7 +9,7 @@ spec:
   output:
     to:
       kind: "ImageStreamTag"
-      name: "gen-ai-comps:chatqna-megaservice-server"
+      name: "chatqna:latest"
   failedBuildsHistoryLimit: 5
   successfulBuildsHistoryLimit: 5
   nodeSelector: null
@@ -17,7 +17,7 @@ spec:
   resources: {}
   runPolicy: SerialLatestOnly
   source:
-    contextDir: ChatQnA/microservice/gaudi
+    contextDir: ChatQnA
     git:
       ref: {{ .Values.global.gaudillm.chatqna_gaudi_backend.git_ref }}
       uri: https://github.com/opea-project/GenAIExamples.git
@@ -25,7 +25,7 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: docker/Dockerfile
+      dockerfilePath: Dockerfile
       {{- if .Values.global.gaudillm.build_envs }}
       env:
       {{- range .Values.global.gaudillm.build_envs }}

@@ -22,7 +22,7 @@ global:
 #      value: http://http_proxy.com:911
     
     tei_embedding:
-      image: gen-ai-comps:tei-gaudi
+      image: tei-gaudi:latest
       model_id: BAAI/bge-large-en-v1.5 # change to set custom TEI embedding model
 #   uncomment to customize PVC size if using TEI models bigger thanBAAI/bge-large-en-v1.5
 #      pvc:i
@@ -39,22 +39,23 @@ global:
       name: tgi-70b-1
 
     chatqna_gaudi_backend: 
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen-ai-comps:chatqna_megaservice_server 
+      image: chatqna:latest
     chatqna_ui_server:  
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:chatqna_ui_server
+      image: chatqna-ui:latest
     embedding:  
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:embedding_tei_server
+      image: embedding-tei:latest
     gaudillm_init: {}
     llm_server_for_gaudi:  
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:llm_tgi_gaudi_server
+      image: llm-tgi:latest
     redis_vector_db:  
       image: redis/redis-stack:7.2.0-v9
     reranking:  
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:reranking_tei_server
+      image: reranking-tei:latest
     retriever:
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen_ai_comps:retriever_redis_server
+      image: retriever-redis:latest
   
 main:
   clusterGroupName: hub
   multiSourceConfig:
     enabled: true
+

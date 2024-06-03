@@ -9,5 +9,22 @@ global:
     runtime_envs: []
     
     chatqna_gaudi_backend: 
-      git_ref: 53de829
-      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/gen-ai-comps:chatqna-megaservice-server 
+      git_ref: 3f26d06
+      image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/chatqna:latest
+      megaservice_envs:
+        - name: EMBEDDING_SERVICE_HOST_IP
+          value: embedding
+        - name: EMBEDDING_SERVICE_PORT
+          value: '"6000"'
+        - name: RETRIEVER_SERVICE_HOST_IP 
+          value: retriever
+        - name: RETRIEVER_SERVICE_PORT 
+          value: '"7000"'
+        - name: RERANK_SERVICE_HOST_IP 
+          value: reranking
+        - name: RERANK_SERVICE_PORT
+          value: '"8000"'
+        - name: LLM_SERVICE_HOST_IP 
+          value: llm
+        - name: LLM_SERVICE_PORT 
+          value: '"9000"'

@@ -6,7 +6,7 @@ metadata:
     kompose.version: 1.33.0 (3ce457399)
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-wave: "5"
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"gen-ai-comps:llm-tgi-gaudi-server"},"fieldPath":"spec.template.spec.containers[?(@.name==\"llm-tgi-gaudi-server\")].image"}]'
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"llm-tgi:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"llm-tgi-gaudi-server\")].image"}]'
   labels:
     io.kompose.service: llm
   name: llm
