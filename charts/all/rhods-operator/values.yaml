@@ -10,4 +10,4 @@ secretStore:
   kind: ClusterSecretStore
 
 hftokensecret:
-  key: secret/global
+  key: secret/global/huggingface
