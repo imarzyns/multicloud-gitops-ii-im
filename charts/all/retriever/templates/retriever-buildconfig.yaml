@@ -15,7 +15,6 @@ spec:
   resources: {}
   runPolicy: SerialLatestOnly
   source:
-    contextDir: .
     git:
       ref: {{ .Values.global.gaudillm.retriever.git_ref }}
       uri: https://github.com/opea-project/GenAIComps.git
