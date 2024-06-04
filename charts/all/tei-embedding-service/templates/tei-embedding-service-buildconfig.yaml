@@ -15,7 +15,6 @@ spec:
   resources: {}
   runPolicy: SerialLatestOnly
   source:
-    contextDir: .
     git:
       uri: https://github.com/huggingface/tei-gaudi.git
     type: Git
@@ -31,6 +30,4 @@ spec:
       {{- end }}
       {{- end }}
   triggers:
-  - imageChange:
-    type: ImageChange
   - type: ConfigChange

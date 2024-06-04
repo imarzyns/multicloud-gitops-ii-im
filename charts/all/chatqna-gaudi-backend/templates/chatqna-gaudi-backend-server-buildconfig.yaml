@@ -34,6 +34,4 @@ spec:
       {{- end }}
       {{- end }}
   triggers:
-  - imageChange:
-    type: ImageChange
   - type: ConfigChange

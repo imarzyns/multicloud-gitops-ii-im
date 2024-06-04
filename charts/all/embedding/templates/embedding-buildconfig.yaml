@@ -15,7 +15,6 @@ spec:
   resources: {}
   runPolicy: SerialLatestOnly
   source:
-    contextDir: .
     git:
       ref: {{ .Values.global.gaudillm.embedding.git_ref }}
       uri: https://github.com/opea-project/GenAIComps.git
@@ -32,6 +31,4 @@ spec:
       {{- end }}
       {{- end }}
   triggers:
-  - imageChange:
-    type: ImageChange
   - type: ConfigChange
