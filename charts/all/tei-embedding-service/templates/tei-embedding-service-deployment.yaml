@@ -36,7 +36,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: HUGGINGFACE_HUB_TOKEN
-                  name: hf-token
+                  name: hf-token-secret
             - name: OMPI_MCA_btl_vader_single_copy_mechanism
               value: none
             #- name: RUNTIME
