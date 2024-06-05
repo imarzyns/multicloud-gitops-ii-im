@@ -33,6 +33,7 @@ rbac:
         cluster: true
       resources:
         - machineconfigs
+        - machineconfigpools
         - pods
         - namespaces
         - services
