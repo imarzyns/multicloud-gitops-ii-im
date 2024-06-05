@@ -18,6 +18,10 @@ job:
 global:
   namespace: gaudi-pattern
 
+rgw:
+  cpu: 2
+  memory: 8Gi
+
 serviceAccountName: gaudi-pattern-sa
 rbac:
   roles:
