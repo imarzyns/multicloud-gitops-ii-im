@@ -33,11 +33,13 @@ rbac:
         - '"machineconfiguration.openshift.io"'
         - '"rbac.authorization.k8s.io"'
         - '"security.openshift.io"'
+        - '"ocs.openshift.io"'
       scope:
         cluster: true
       resources:
         - namespaces
         - secrets
+        - storageclusters
       verbs:
         - "create"
         - "get"
