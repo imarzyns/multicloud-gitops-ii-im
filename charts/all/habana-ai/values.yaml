@@ -29,14 +29,16 @@ rbac:
         - '"apps"'
         - '"apiextensions.k8s.io"'
         - '"machineconfiguration.openshift.io"'
+        - '"imageregistry.operator.openshift.io"'
       scope:
         cluster: true
       resources:
         - machineconfigs
+        - machineconfigpools
         - pods
         - namespaces
         - services
-        - configs.imageregistry.operator.openshift.io/cluster
+        - configs
       verbs:
         - "get"
         - "list"
