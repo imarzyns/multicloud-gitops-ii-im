@@ -8,6 +8,9 @@ metadata:
 data:
   kubeletconfig-pidlimit-apply.sh: |
     #!/bin/bash
+   
+    set -o pipefail
+  
     oc label mcp/master custom-kubelet=set-pod-pid-limit-kubelet
     oc label mcp/worker custom-kubelet=set-pod-pid-limit-kubelet
 
@@ -15,7 +18,7 @@ data:
 
     echo "Current MC is ${CURRENT_CONFIG}, checking if podPidsLimit is already increased..."
 
-    until [[ $(oc get mc rendered-worker-5235f945c78fd7c85de6abd4bd4fd7d7 -ojsonpath='{.spec.config.storage.files[?(@.path=="/etc/kubernetes/kubelet.conf")].contents.source}' | cut -d "," -f2 | tr -d '"' | base64 -d - | grep '"podPidsLimit": 65536') ]]
+    until [[ $(oc get mc "${CURRENT_CONFIG}" -ojsonpath='{.spec.config.storage.files[?(@.path=="/etc/kubernetes/kubelet.conf")].contents.source}' | cut -d "," -f2 | tr -d '"' | base64 -d - | grep '"podPidsLimit": 65536') ]]
     do 
       echo "Machine config does not include our expected changes, sleeping for 15 seconds..."
       sleep 15
