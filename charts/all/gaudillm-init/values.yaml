@@ -51,6 +51,7 @@ rbac:
         cluster: true
       resources:
         - machineconfigpools
+        - machineconfigs
       verbs:
         - "get"
         - "list"
