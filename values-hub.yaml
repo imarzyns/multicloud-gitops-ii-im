@@ -153,7 +153,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/tei-xeon-service
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: apps
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
@@ -163,7 +163,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/tei-embedding-service
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: apps
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
@@ -173,7 +173,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/retriever
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: apps
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
@@ -183,7 +183,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/reranking
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: apps
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
@@ -198,7 +198,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/llm-server-for-gaudi
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: apps
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
@@ -208,7 +208,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/gaudillm-init
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: machineconfiguration.openshift.io
         kind: KubeletConfig
         jqPathExpressions:
         - '.metadata.labels.argocd.argoproj.io/instance'
@@ -219,7 +219,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/embedding
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: apps
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
@@ -229,7 +229,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/chatqna-ui-server
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: apps
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
@@ -239,7 +239,7 @@ clusterGroup:
       project: gaudi-llm
       path: charts/all/chatqna-gaudi-backend
       ignoreDifferences:
-      - group: apps.openshift.io
+      - group: apps
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
