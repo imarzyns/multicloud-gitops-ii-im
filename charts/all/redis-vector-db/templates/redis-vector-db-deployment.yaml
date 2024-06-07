@@ -30,4 +30,11 @@ spec:
               protocol: TCP
             - containerPort: 8001
               protocol: TCP
+          volumeMounts:
+            - mountPath: /data
+              name: redis-vector-db-claim0
       restartPolicy: Always
+      volumes:
+        - name: redis-vector-db-claim0
+          persistentVolumeClaim:
+            claimName: redis-vector-db-claim0

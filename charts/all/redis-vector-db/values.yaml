@@ -8,3 +8,5 @@ global:
     
     redis_vector_db:  
       image: redis/redis-stack:7.2.0-v9
+      pvc:
+        size: 3Gi
