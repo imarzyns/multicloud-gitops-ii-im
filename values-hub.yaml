@@ -152,21 +152,41 @@ clusterGroup:
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/tei-xeon-service
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
     tei-embedding-service:
       name: tei-embedding-service
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/tei-embedding-service
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
     retriever:
       name: retriever
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/retriever
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
     reranking:
       name: reranking
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/reranking
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
     redis-vector-db:
       name: redis-vector-db
       namespace: gaudi-llm
@@ -177,26 +197,52 @@ clusterGroup:
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/llm-server-for-gaudi
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
     gaudillm-init:
       name: gaudillm-init
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/gaudillm-init
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: KubeletConfig
+        jqPathExpressions:
+        - '.metadata.labels.argocd.argoproj.io/instance'
+        - '.metadata.annotations.kubectl.kubernetes.io/last-applied-configuration'
     embedding:
       name: embedding
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/embedding
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
     chatqna-ui-server:
       name: chatqna-ui-server
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/chatqna-ui-server
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
     chatqna-gaudi-backend:
       name: chatqna-gaudi-backend
       namespace: gaudi-llm
       project: gaudi-llm
       path: charts/all/chatqna-gaudi-backend
+      ignoreDifferences:
+      - group: apps.openshift.io
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
