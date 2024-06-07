@@ -21,6 +21,7 @@ global:
 rgw:
   cpu: 2
   memory: 8Gi
+  bucketName: model-bucket
 
 serviceAccountName: gaudi-pattern-sa
 rbac:
@@ -40,6 +41,7 @@ rbac:
         - namespaces
         - secrets
         - storageclusters
+        - routes
       verbs:
         - "create"
         - "get"
