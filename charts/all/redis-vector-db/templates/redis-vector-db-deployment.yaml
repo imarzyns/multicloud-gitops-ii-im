@@ -33,8 +33,12 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: redis-vector-db-claim0
+            - mountPath: /redisinsight/logs
+              name: redisinsight-logs
       restartPolicy: Always
       volumes:
         - name: redis-vector-db-claim0
           persistentVolumeClaim:
             claimName: redis-vector-db-claim0
+        - name: redisinsight-logs
+          emptyDir: {}
