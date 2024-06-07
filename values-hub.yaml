@@ -233,6 +233,7 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+        - '.spec.template.spec.initContainers[].image'
     chatqna-gaudi-backend:
       name: chatqna-gaudi-backend
       namespace: gaudi-llm
