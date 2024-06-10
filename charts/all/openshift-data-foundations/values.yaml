@@ -14,6 +14,7 @@ route:
 
 job:
   image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+  awsimage: amazon/aws-cli
 
 global:
   namespace: gaudi-pattern

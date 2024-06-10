@@ -10,16 +10,12 @@ spec:
   template:
     spec:
       containers:
-      - image: {{ .Values.job.image }}
+      - image: {{ .Values.job.awsimage }}
         command:
         - /bin/bash
         - -c
         - |
-          yum install -y unzip less && \
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-          unzip awscliv2.zip && \
-          ./aws/install && \
-          aws --endpoint https://$(oc -n openshift-storage get route {{ .Values.route.name }} -ojsonpath='{.spec.host}') --no-verify-ssl s3api create-bucket --bucket {{ .Values.rgw.bucketName }}
+          aws --endpoint https://${S3_RGW_ROUTE} --no-verify-ssl s3api create-bucket --bucket {{ .Values.rgw.bucketName }}
         env:
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
@@ -30,6 +26,11 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: AWS_SECRET_ACCESS_KEY
+                name: s3-secret-bck
+          - name: S3_RGW_ROUTE
+            valueFrom:
+              secretKeyRef:
+                key: S3_RGW_ROUTE
                 name: s3-secret-bck
         name: create-s3-bucket
       dnsPolicy: ClusterFirst
