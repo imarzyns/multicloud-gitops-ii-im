@@ -8,7 +8,7 @@ spec:
   template:
     spec:
       containers:
-        - image: {{ .Values.config.habanacheckjob.image }}
+        - image: {{ .Values.habanacheckjob.image }}
           command:
             - /bin/bash
             - -c

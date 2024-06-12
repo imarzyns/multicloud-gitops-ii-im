@@ -13,7 +13,7 @@ config:
      version: 1.15.1-15
 
 habanacheckjob:
-  image: https://vault.habana.ai/artifactory/gaudi-docker/1.15.1/rhel9.2/habanalabs/pytorch-installer-2.2.0:latest
+  image: vault.habana.ai/artifactory/gaudi-docker/1.15.1/rhel9.2/habanalabs/pytorch-installer-2.2.0:latest
 
 machineconfigName:
   fwpath: 99-worker-kernel-args-firmware-path
