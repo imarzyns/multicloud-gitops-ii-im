@@ -14,10 +14,9 @@ spec:
             - /bin/bash
             - -c
             - |
-              oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}' && \
+              oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"storage":{"pvc":{"claim":null}}}}' && \
               oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"managementState":"Managed"}}' --type=merge && \
-              until oc get svc image-registry -n openshift-image-registry; do sleep 10; done && \
-              oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"managementState":"Unmanaged"}}' --type=merge
+              until oc get svc image-registry -n openshift-image-registry; do sleep 10; done
           imagePullPolicy: IfNotPresent
           name: habana-apply-patches
       restartPolicy: Never
