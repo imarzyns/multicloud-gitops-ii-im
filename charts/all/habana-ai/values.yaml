@@ -1,16 +1,16 @@
 config:
    devicePlugin:
      image: vault.habana.ai/docker-k8s-device-plugin/docker-k8s-device-plugin
-     version: 1.15.1
+     version: 1.16.0
    driver:
      image: image-registry.openshift-image-registry.svc:5000/habana-ai-operator/habana-ai-driver
-     version: 1.15.1-15
+     version: 1.16.0-526
    habanaRuntime:
      image: vault.habana.ai/habana-ocp-operator/1.15.1/habana-runtime
-     version: 1.15.1-15
+     version: 1.16.0-526
    nodeMetrics:
      image: vault.habana.ai/gaudi-metric-exporter/metric-exporter
-     version: 1.15.1-15
+     version: 1.16.0-526
 
 habanacheckjob:
   image: vault.habana.ai/gaudi-docker/1.15.1/rhel9.2/habanalabs/pytorch-installer-2.2.0:latest
