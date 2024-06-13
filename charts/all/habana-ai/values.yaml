@@ -6,7 +6,7 @@ config:
      image: image-registry.openshift-image-registry.svc:5000/habana-ai-operator/habana-ai-driver
      version: 1.16.0-526
    habanaRuntime:
-     image: vault.habana.ai/habana-ocp-operator/1.16.0/habana-runtime
+     image: vault.habana.ai/habana-ocp-operator/1.15.1/habana-runtime
      version: 1.16.0-526
    nodeMetrics:
      image: vault.habana.ai/gaudi-metric-exporter/metric-exporter
