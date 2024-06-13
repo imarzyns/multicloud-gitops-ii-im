@@ -52,8 +52,8 @@ global:
 #    TODO: IMPLEMENT CUSTOMIZING TGI ENDPOINT FROM RHOAI
 
     servingRuntime:
-      namespace: rag-demo
-      name: tgi-70b-1
+      namespace: test
+      name: gaudi-7b-test
 
     chatqna_gaudi_backend: 
       image: chatqna:latest
