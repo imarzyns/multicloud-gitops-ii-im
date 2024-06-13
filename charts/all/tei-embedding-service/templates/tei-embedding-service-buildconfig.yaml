@@ -16,6 +16,7 @@ spec:
   runPolicy: SerialLatestOnly
   source:
     git:
+      ref: {{ .Values.global.gaudillm.tei_embedding.git_ref }}
       uri: https://github.com/huggingface/tei-gaudi.git
     type: Git
   strategy:
