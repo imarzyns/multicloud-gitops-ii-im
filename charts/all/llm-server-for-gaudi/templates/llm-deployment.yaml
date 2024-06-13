@@ -46,7 +46,7 @@ spec:
             - name: SSL_CERT_FILE
               value: /tmp/bundle.crt
             - name: TGI_LLM_ENDPOINT
-              value: https://tgi-70b-1-{{ .Values.global.gaudillm.servingRuntime.namespace }}.apps.{{ .Values.global.clusterDomain }}
+              value: https://{{ .Values.global.gaudillm.servingRuntime.name }}-{{ .Values.global.gaudillm.servingRuntime.namespace }}.apps.{{ .Values.global.clusterDomain }}
             {{- if .Values.global.gaudillm.runtime_envs }}
             {{- range .Values.global.gaudillm.runtime_envs }}
             - name: {{ .name }}
