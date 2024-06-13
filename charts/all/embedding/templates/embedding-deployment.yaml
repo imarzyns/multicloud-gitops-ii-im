@@ -32,7 +32,7 @@ spec:
             - name: PYTHONPATH
               value: /home/user/.local/lib/python3.11/site-packages:/home/user
             - name: TEI_EMBEDDING_ENDPOINT
-              value: http://tei-embedding-service:8090
+              value: http://tei-embedding-service.gaudi-llm.svc.cluster.local:8090
             {{- if .Values.global.gaudillm.runtime_envs }}
             {{- range .Values.global.gaudillm.runtime_envs }}
             - name: {{ .name }}

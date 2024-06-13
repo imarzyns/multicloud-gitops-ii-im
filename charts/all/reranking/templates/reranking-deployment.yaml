@@ -35,7 +35,7 @@ spec:
                   key: huggingface
                   name: hf-token-secret
             - name: TEI_RERANKING_ENDPOINT
-              value: http://tei-xeon-service:8808
+              value: http://tei-xeon-service.gaudi-llm.svc.cluster.local:8808
             {{- if .Values.global.gaudillm.runtime_envs }}
             {{- range .Values.global.gaudillm.runtime_envs }}
             - name: {{ .name }}
