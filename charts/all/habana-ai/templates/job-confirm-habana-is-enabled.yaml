@@ -16,6 +16,14 @@ spec:
                hl-smi -Q memory.total -f csv
           imagePullPolicy: IfNotPresent
           name: confirm-habana-is-enabled
+          securityContext:
+            capabilities:
+              add: ["SYS_NICE"]
+          resources:
+            limits:
+              habana.ai/gaudi: "1"
+            requests:
+              habana.ai/gaudi: "1"
       restartPolicy: Never
       serviceAccount: {{ .Values.serviceAccountName }}
       serviceAccountName: {{ .Values.serviceAccountName }}
