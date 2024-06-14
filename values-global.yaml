@@ -53,7 +53,7 @@ global:
 
     servingRuntime:
       namespace: test
-      name: gaudi-7b-test
+      name: neuralchat-7b
 
     chatqna_gaudi_backend: 
       image: chatqna:latest
