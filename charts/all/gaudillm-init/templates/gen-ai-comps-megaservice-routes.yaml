@@ -81,6 +81,8 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
+  annotations:
+    haproxy.router.openshift.io/timeout: 86400s # long timeout for dataprep processing
   name: dataprep-megaservice-route
   namespace: {{ .Values.global.gaudillm.namespace }}
 spec:
