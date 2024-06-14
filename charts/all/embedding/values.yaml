@@ -8,4 +8,4 @@ glkobal:
     
     embedding:  
       image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/embedding-tei:latest
-      git_ref: 3448b6t # make sure to validate buildconfig & other change scope before updating
+      git_ref: 3448b6f # make sure to validate buildconfig & other change scope before updating
