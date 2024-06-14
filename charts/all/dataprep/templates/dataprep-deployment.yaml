@@ -50,10 +50,10 @@ spec:
             - name: temp-data
               mountPath: /tmp/temp-data
             - name: uploaded-files
-              mounthPath: /home/user/comps/dataprep/redis/uploaded_files
+              mountPath: /home/user/comps/dataprep/redis/uploaded_files
       restartPolicy: Always
       volumes:
         - name: temp-data
           emptyDir: {}
         - name: uploaded-files
-          emtpyDir: {}
+          emptyDir: {}
