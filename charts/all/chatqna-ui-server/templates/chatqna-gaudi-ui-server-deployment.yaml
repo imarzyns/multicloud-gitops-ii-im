@@ -43,7 +43,7 @@ spec:
               value: /tmp/temp-data
             - name: CHAT_BASE_URL
               value: http://megaservice-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterDomain }}/v1/chatqna
-            - name: UPLOAD_FILE_BASE_UR
+            - name: UPLOAD_FILE_BASE_URL
               value: http://dataprep.gaudi-llm.svc.cluster.local:6007/v1/dataprep
             {{- if .Values.global.gaudillm.runtime_envs }}
             {{- range .Values.global.gaudillm.runtime_envs }}
