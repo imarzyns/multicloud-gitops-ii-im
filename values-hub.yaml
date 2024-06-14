@@ -230,6 +230,16 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+    dataprep:
+      name: dataprep
+      namespace: gaudi-llm
+      project: gaudi-llm
+      path: charts/all/dataprep
+      ignoreDifferences:
+      - group: apps
+        kind: Deployment
+        jqPathExpressions:
+        - '.spec.template.spec.containers[].image'
     chatqna-ui-server:
       name: chatqna-ui-server
       namespace: gaudi-llm

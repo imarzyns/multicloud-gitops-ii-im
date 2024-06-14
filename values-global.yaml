@@ -6,7 +6,7 @@ global:
     syncPolicy: Automatic
     installPlanApproval: Automatic
 
-  clusterDomain: igk.internal
+  clusterDomain: cluster1.gaudi.internal
 
   gaudillm:
     namespace: gaudi-llm
@@ -59,6 +59,8 @@ global:
       image: chatqna:latest
     chatqna_ui_server:  
       image: chatqna-ui:latest
+    dataprep:  
+      image: dataprep-redis:latest
     embedding:  
       image: embedding-tei:latest
     gaudillm_init: {}
