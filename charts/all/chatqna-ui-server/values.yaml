@@ -9,5 +9,5 @@ global:
     runtime_envs: []
     
     chatqna_ui_server:  
-      git_ref: 50199111654ea9636c87bfda6a1694f99ef50549
+      git_ref: 2b51374 
       image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/chatqna-ui:latest
