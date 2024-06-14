@@ -1,7 +1,7 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: retrievers
+  name: retriever
   namespace: {{ .Values.global.gaudillm.namespace }}
 spec:
   output:
