@@ -46,7 +46,7 @@ global:
 #        size: 10Gi
     tei_xeon:
       image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.2
-      model_id: BAAI/bge-reranker-large # change to set custom TEI reranker model on CPU
+      model_id: BAAI/bge-reranker-base # change to set custom TEI reranker model on CPU
 #      pvc:
 #        size: 10Gi
 #    TODO: IMPLEMENT CUSTOMIZING TGI ENDPOINT FROM RHOAI

@@ -10,4 +10,4 @@ global:
       image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.2
       pvc:
         size: 3Gi
-      model_id: BAAI/bge-reranker-large
+      model_id: BAAI/bge-reranker-base
