@@ -9,7 +9,7 @@ global:
     runtime_envs: []
     
     chatqna_gaudi_backend: 
-      git_ref: 3f26d06
+      git_ref: 2b51374 
       image: image-registry.openshift-image-registry.svc:5000/gaudi-llm/chatqna:latest
       megaservice_envs:
         - name: EMBEDDING_SERVICE_HOST_IP
