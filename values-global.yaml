@@ -40,13 +40,13 @@ global:
 
     tei_embedding:
       image: tei-gaudi:latest
-      model_id: BAAI/bge-base-en-v1.5 # change to set custom TEI embedding model
+      model_id: BAAI/bge-large-en-v1.5 # change to set custom TEI embedding model
 #   uncomment to customize PVC size if using TEI models bigger thanBAAI/bge-large-en-v1.5
 #      pvc:i
 #        size: 10Gi
     tei_xeon:
       image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.2
-      model_id: BAAI/bge-reranker-base # change to set custom TEI reranker model on CPU
+      model_id: BAAI/bge-reranker-large # change to set custom TEI reranker model on CPU
 #      pvc:
 #        size: 10Gi
 #    TODO: IMPLEMENT CUSTOMIZING TGI ENDPOINT FROM RHOAI
