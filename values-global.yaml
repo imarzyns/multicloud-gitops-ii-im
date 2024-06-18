@@ -53,7 +53,7 @@ global:
 
     servingRuntime:
       namespace: test
-      name: llama-gaudi-7b
+      name: tgi-gaudi-70b
 
     chatqna_gaudi_backend: 
       image: chatqna:latest
