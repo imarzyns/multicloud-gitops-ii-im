@@ -35,6 +35,7 @@ rbac:
         - namespaces
         - secrets
         - datascienceclusters
+        - clusterrolebindings
       verbs:
         - "create"
         - "get"
