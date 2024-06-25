@@ -52,7 +52,7 @@ global:
 #    TODO: IMPLEMENT CUSTOMIZING TGI ENDPOINT FROM RHOAI
 
     servingRuntime:
-      namespace: gaudi-llm-tgi
+      namespace: gaudi-llm
       name: tgi-gaudi-70b
 
     chatqna_gaudi_backend: 
