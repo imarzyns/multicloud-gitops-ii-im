@@ -29,6 +29,7 @@ rbac:
         - '"rbac.authorization.k8s.io"'
         - '"security.openshift.io"'
         - '"datasciencecluster.opendatahub.io"'
+        - '"operator.knative.dev"'
       scope:
         cluster: true
       resources:
@@ -36,6 +37,7 @@ rbac:
         - secrets
         - datascienceclusters
         - clusterrolebindings
+        - knativeservings
       verbs:
         - "create"
         - "get"
