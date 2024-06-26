@@ -1,9 +1,7 @@
 apiVersion: dashboard.opendatahub.io/v1
 kind: AcceleratorProfile
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "5"
-  name: zzgaudi-2
+  name: gaudi-2
   namespace: redhat-ods-applications
 spec:
   displayName: Gaudi 2

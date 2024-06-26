@@ -122,6 +122,11 @@ clusterGroup:
       namespace: redhat-ods-operator
       project: redhat-ods-operator
       path: charts/all/rhods-operator
+    rhods-gaudi-addons:
+      name: rhods-gaudi-addons
+      namespace: redhat-ods-operator
+      project: redhat-ods-operator
+      path: charts/all/rhods-operator-gaudi-addons
     tei-xeon-service:
       name: tei-xeon-service
       namespace: gaudi-llm
