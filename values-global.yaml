@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: multicloud-gitops-gaudi-rhoai
+  pattern: opea-chatqna-on-gaudi
   options:
     useCSV: false
     syncPolicy: Automatic
