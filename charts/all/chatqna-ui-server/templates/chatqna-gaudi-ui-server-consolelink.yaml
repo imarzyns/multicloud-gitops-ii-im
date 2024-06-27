@@ -1,0 +1,11 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleLink
+metadata:
+  name: opea-chatqna-on-gaudi
+spec:
+  href: 'http://chatqna-gaudi-ui-server-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterDomain }}'
+  location: ApplicationMenu
+  # This text will appear in a box called "Launcher" under "namespace" or "project" in the web console
+  text: OPEA ChatQnA on Intel Gaudi
+  applicationMenu:
+    section: OPEA ChatQnA on Intel Gaudi UI
