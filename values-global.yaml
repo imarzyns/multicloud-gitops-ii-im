@@ -53,7 +53,7 @@ global:
 
     servingRuntime:
       namespace: gaudi-llm
-      name: tgi-gaudi-70b
+      name: tgi-70b-gaudi
 
     chatqna_gaudi_backend: 
       image: chatqna:latest
