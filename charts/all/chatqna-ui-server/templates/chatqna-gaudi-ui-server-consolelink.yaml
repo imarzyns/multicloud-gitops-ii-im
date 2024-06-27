@@ -10,4 +10,4 @@ spec:
   # This text will appear in a box called "Launcher" under "namespace" or "project" in the web console
   text: OPEA ChatQnA on Intel Gaudi
   applicationMenu:
-    section: OPEA ChatQnA on Intel Gaudi UI
+    section: Open Platform For Enterprise AI
