@@ -5,7 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "6"
 spec:
-  href: 'http://chatqna-gaudi-ui-server-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterDomain }}'
+  href: 'https://opea-chatqna-gaudi-{{ .Values.global.gaudillm.namespace }}.apps.{{ .Values.global.clusterDomain }}'
   location: ApplicationMenu
   # This text will appear in a box called "Launcher" under "namespace" or "project" in the web console
   text: OPEA ChatQnA on Intel Gaudi
