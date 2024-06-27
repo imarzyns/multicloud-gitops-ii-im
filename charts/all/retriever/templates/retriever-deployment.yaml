@@ -25,7 +25,8 @@ spec:
         io.kompose.service: retriever
     spec:
       containers:
-        - env:
+        - command: ["python", "retriever_redis.py"]
+          env:
             - name: HOME
               value: /tmp/temp-data
             - name: PYTHONPATH
