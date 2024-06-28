@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ensure-builds
+  namespace: {{ .Values.global.gaudillm.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+data:
+  ensure-builds.sh: |
+    #!/bin/bash
+   
+    set -o pipefail
+
+    echo "Ensuring no buildconfigs are in failed status after all MCs have been applied"
+  
+    for buildconfig in $(oc get buildconfigs -oname)
+    do
+      echo "Getting last build data for BuildConfig ${OWNER}"
+      LATEST="$(oc get ${OWNER} -ojsonpath='{.status.lastVersion}'"
+      BUILD_NAME="$(oc get ${OWNER} -ojsonpath='{.metadata.name}'"
+      echo "Checking last build status..."
+      LAST_FAILED="$(oc get build ${BUILD_NAME}-${LATEST} -ojsonpath='{.status.Phase}')"
+      echo "Is last build ${LATEST} failed? ${FAILED}"
+      if [[ "Failed" = "${LAST_FAILED}" ]]
+      then
+        echo "Restarting build for last failed BuildConfig ${BUILD_NAME}"
+        oc start-build "${buildconfig}"
+      fi
+    done

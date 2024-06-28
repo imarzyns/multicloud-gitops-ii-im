@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/sync-wave: "11"
-  name: unpause-builds-job
+  name: ensure-builds-job
   namespace: {{ .Values.global.gaudillm.namespace }}
 spec:
   template:
@@ -18,16 +18,16 @@ spec:
           oc wait --for condition=Complete -n habana-ai-operator job confirm-habana-is-enabled --timeout=-1s
           oc wait --for condition=Complete -n habana-ai-operator job job-wait-for-mcp-update --timeout=-1s
           oc wait --for condition=Complete -n {{ .Values.global.gaudillm.namespace }} job init-kubeletconfig-apply-job --timeout=-1s
-          '/tmp/unpause-builds.sh'
-        name: unpause-builds
+          '/tmp/ensure-builds.sh'
+        name: ensure-builds
         volumeMounts:
-          - mountPath: /tmp/unpause-builds.sh
-            name: unpause-builds
-            subPath: unpause-builds.sh
+          - mountPath: /tmp/ensure-builds.sh
+            name: ensure-builds
+            subPath: ensure-builds.sh
       volumes:
-        - name: unpause-builds
+        - name: ensure-builds
           configMap:
-            name: unpause-builds
+            name: ensure-builds
             defaultMode: 0755
       dnsPolicy: ClusterFirst
       restartPolicy: Never
