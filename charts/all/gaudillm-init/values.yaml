@@ -43,6 +43,7 @@ rbac:
         - jobs
         - buildconfigs
         - builds
+        - buildconfigs/instantiate
       verbs:
         - "create"
         - "get"
