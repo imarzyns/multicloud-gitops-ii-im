@@ -16,8 +16,8 @@ data:
     for buildconfig in $(oc get buildconfigs -oname)
     do
       echo "Getting last build data for BuildConfig ${OWNER}"
-      LATEST="$(oc get ${OWNER} -ojsonpath='{.status.lastVersion}'"
-      BUILD_NAME="$(oc get ${OWNER} -ojsonpath='{.metadata.name}'"
+      LATEST="$(oc get ${OWNER} -ojsonpath='{.status.lastVersion}')"
+      BUILD_NAME="$(oc get ${OWNER} -ojsonpath='{.metadata.name}')"
       echo "Checking last build status..."
       LAST_FAILED="$(oc get build ${BUILD_NAME}-${LATEST} -ojsonpath='{.status.Phase}')"
       echo "Is last build ${LATEST} failed? ${FAILED}"
