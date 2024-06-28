@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: unpause-builds
+  namespace: {{ .Values.global.gaudillm.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+data:
+  unpause-builds.sh: |
+    #!/bin/bash
+   
+    set -o pipefail
+
+    echo "Unpausing buildconfigs after confirming all MCs are applied"
+  
+    for buildconfig in $(oc get buildconfigs -oname)
+    do
+      echo "Patching ${buildconfig}"
+      oc patch "${buildconfig}" --patch '{"spec":{"paused":false}}'
+    done

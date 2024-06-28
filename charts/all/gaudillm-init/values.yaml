@@ -25,11 +25,13 @@ rbac:
       apiGroups:
         - '""'
         - '"apps"'
+        - '"batch"'
         - '"machineconfiguration.openshift.io"'
         - '"rbac.authorization.k8s.io"'
         - '"security.openshift.io"'
         - '"datasciencecluster.opendatahub.io"'
         - '"operator.knative.dev"'
+        - '"build.openshift.io"'
       scope:
         cluster: true
       resources:
@@ -38,6 +40,9 @@ rbac:
         - datascienceclusters
         - clusterrolebindings
         - knativeservings
+        - jobs
+        - buildconfigs
+        - builds
       verbs:
         - "create"
         - "get"
