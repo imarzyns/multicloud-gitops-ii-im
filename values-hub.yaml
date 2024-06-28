@@ -137,6 +137,10 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
     tei-embedding-service:
       name: tei-embedding-service
       namespace: gaudi-llm
@@ -147,6 +151,10 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
     retriever:
       name: retriever
       namespace: gaudi-llm
@@ -157,6 +165,10 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
     reranking:
       name: reranking
       namespace: gaudi-llm
@@ -167,6 +179,10 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
     redis-vector-db:
       name: redis-vector-db
       namespace: gaudi-llm
@@ -182,6 +198,10 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
     gaudillm-init:
       name: gaudillm-init
       namespace: gaudi-llm
@@ -204,6 +224,10 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
     dataprep:
       name: dataprep
       namespace: gaudi-llm
@@ -214,6 +238,10 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
     chatqna-ui-server:
       name: chatqna-ui-server
       namespace: gaudi-llm
@@ -225,6 +253,10 @@ clusterGroup:
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
         - '.spec.template.spec.initContainers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
     chatqna-gaudi-backend:
       name: chatqna-gaudi-backend
       namespace: gaudi-llm
@@ -235,6 +267,10 @@ clusterGroup:
         kind: Deployment
         jqPathExpressions:
         - '.spec.template.spec.containers[].image'
+      - group: build.openshift.io
+        kind: BuildConfig
+        jqPathExpressions:
+        - '.spec.paused'
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
