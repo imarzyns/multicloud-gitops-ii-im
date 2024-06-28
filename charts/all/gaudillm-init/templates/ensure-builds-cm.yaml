@@ -8,22 +8,25 @@ metadata:
 data:
   ensure-builds.sh: |
     #!/bin/bash
-   
+
     set -o pipefail
 
     echo "Ensuring no buildconfigs are in failed status after all MCs have been applied"
-  
+
+    oc project "{{ .Values.global.gaudillm.namespace }}"
+
     for buildconfig in $(oc get buildconfigs -oname)
     do
-      echo "Getting last build data for BuildConfig ${OWNER}"
-      LATEST="$(oc get ${OWNER} -ojsonpath='{.status.lastVersion}')"
-      BUILD_NAME="$(oc get ${OWNER} -ojsonpath='{.metadata.name}')"
+      echo "Getting last build data for BuildConfig ${buildconfig}"
+      LATEST="$(oc get ${buildconfig} -ojsonpath='{.status.lastVersion}')"
+      BUILD_NAME="$(oc get ${buildconfig} -ojsonpath='{.metadata.name}')"
       echo "Checking last build status..."
-      LAST_FAILED="$(oc get build ${BUILD_NAME}-${LATEST} -ojsonpath='{.status.Phase}')"
-      echo "Is last build ${LATEST} failed? ${FAILED}"
+      LAST_FAILED="$(oc get build ${BUILD_NAME}-${LATEST} -ojsonpath='{.status.phase}')"
+      echo "Is last build ${LATEST} failed? ${LAST_FAILED}"
       if [[ "Failed" = "${LAST_FAILED}" ]]
       then
         echo "Restarting build for last failed BuildConfig ${BUILD_NAME}"
         oc start-build "${buildconfig}"
       fi
     done
+
