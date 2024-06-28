@@ -11,22 +11,22 @@ data:
 
     set -o pipefail
 
+    NS="{{ .Values.global.gaudillm.namespace }}"
+
     echo "Ensuring no buildconfigs are in failed status after all MCs have been applied"
 
-    oc project "{{ .Values.global.gaudillm.namespace }}"
-
-    for buildconfig in $(oc get buildconfigs -oname)
+    for buildconfig in $(oc -n ${NS} get buildconfigs -oname)
     do
       echo "Getting last build data for BuildConfig ${buildconfig}"
-      LATEST="$(oc get ${buildconfig} -ojsonpath='{.status.lastVersion}')"
-      BUILD_NAME="$(oc get ${buildconfig} -ojsonpath='{.metadata.name}')"
+      LATEST="$(oc -n ${NS} get ${buildconfig} -ojsonpath='{.status.lastVersion}')"
+      BUILD_NAME="$(oc -n ${NS} get ${buildconfig} -ojsonpath='{.metadata.name}')"
       echo "Checking last build status..."
-      LAST_FAILED="$(oc get build ${BUILD_NAME}-${LATEST} -ojsonpath='{.status.phase}')"
+      LAST_FAILED="$(oc -n ${NS} get build ${BUILD_NAME}-${LATEST} -ojsonpath='{.status.phase}')"
       echo "Is last build ${LATEST} failed? ${LAST_FAILED}"
       if [[ "Failed" = "${LAST_FAILED}" ]]
       then
         echo "Restarting build for last failed BuildConfig ${BUILD_NAME}"
-        oc start-build "${buildconfig}"
+        oc -n ${NS} start-build "${buildconfig}"
       fi
     done
 
